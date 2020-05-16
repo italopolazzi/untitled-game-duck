@@ -6,6 +6,8 @@ import IndexPage from '../pages/index'
 import AboutPage from '../pages/about'
 import OutroPage from '../pages/outro'
 
+import SwitchLanguageButton from '../components/SwitchLanguageButton'
+
 class DefaultLayout extends Component {
   render() {
     return (
@@ -19,7 +21,7 @@ class DefaultLayout extends Component {
               <li><Link to="/outro" >Outro</Link></li>
             </ul>
           </nav>
-
+          <SwitchLanguageButton />
           {/* main-content */}
           <section id="main-content">
             <Switch>

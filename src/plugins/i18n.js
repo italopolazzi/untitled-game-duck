@@ -4,12 +4,20 @@ import { initReactI18next } from 'react-i18next'
 const resources = {
   en: {
     translation: {
-      'Welcome to React': 'Welcome to React and react-i18next'
+      'Welcome to React': 'Welcome to React and react-i18next',
+      'Switch Language': 'Switch language',
+      test: {
+        new: 'New'
+      }
     }
   },
   pt: {
     translation: {
-      'Welcome to React': 'Bem-vindo(a) ao React e react-i18next'
+      'Welcome to React': 'Bem-vindo(a) ao React e react-i18next',
+      'Switch Language': 'Mudar a linguagem',
+      test: {
+        new: 'Novo'
+      }
     }
   }
 }
@@ -22,9 +30,9 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'pt', // Language to use(overrides language detection)
+  // lng: 'pt', // Language to use(overrides language detection)
   fallbackLng: 'pt', // Language to use if translations in user language are not available.
-  keySeparator: false, // Char to separate keys
+  keySeparator: '.', // Char to separate keys
   interpolation: {
     escapeValue: false, // Escape passed in values to avoid xss injection (ps: react already safes from xss)
   }
