@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
@@ -7,33 +7,58 @@ import AboutPage from '@pages/about'
 import OutroPage from '@pages/outro'
 
 import SwitchLanguageButton from '@components/SwitchLanguageButton'
+import { Grommet, Header, Nav, Anchor, Button, Text, Box, ThemeContext } from 'grommet'
 
-class DefaultLayout extends Component {
-  render() {
-    return (
+import dark_theme from '../themes/dark'
+import light_theme from '../themes/light'
+
+const DefaultLayout = () => {
+
+  const [theme, setTheme] = useState(dark_theme)
+  const [themeMode, setThemeMode] = useState('dark')
+
+  const switchTheme = () => {
+
+    setTheme(themeMode === 'dark' ? light_theme : dark_theme)
+    setThemeMode(themeMode === 'dark' ? 'light' : 'dark')
+  }
+
+  useEffect(() => {
+    document.title = `Current theme is ${theme}`
+  })
+
+  return (
+    <Grommet theme={theme} themeMode={themeMode} full cssVars={true}>
+      {/* <ThemeContext.Extend value={myTheme} > */}
       <BrowserRouter>
         <div className="default-layout">
           {/* navigation */}
-          <nav>
-            <ul>
-              <li><Link to="/" >Index</Link></li>
-              <li><Link to="/about" >About</Link></li>
-              <li><Link to="/outro" >Outro</Link></li>
-            </ul>
-          </nav>
+          <Header elevation="xsmall" >
+            <Nav direction="row" background="brand" pad="medium" fill>
+              <Anchor href="/" hoverIndicator label="Home" />
+              <Anchor href="/about" hoverIndicator label="About" />
+              <Anchor href="/outro" hoverIndicator label="Outro" />
+              <Button label="Switch theme" onClick={switchTheme} />
+              <Text>{themeMode === 'dark' ? 'Tema escuro' : 'Tema claro'}</Text>
+            </Nav>
+          </Header>
           <SwitchLanguageButton />
           {/* main-content */}
           <section id="main-content">
-            <Switch>
-              <Route path="/" exact component={IndexPage} />
-              <Route path="/about" component={AboutPage} />
-              <Route path="/outro" component={OutroPage} />
-            </Switch>
+            <Box>
+
+            </Box>
           </section>
         </div>
+        <Switch>
+          <Route path="/" exact component={IndexPage} />
+          <Route path="/about" exact component={AboutPage} />
+          <Route path="/outro" exact component={OutroPage} />
+        </Switch>
       </BrowserRouter>
-    )
-  }
+      {/* </ThemeContext.Extend> */}
+    </Grommet >
+  ) 
 }
 
 export default DefaultLayout
