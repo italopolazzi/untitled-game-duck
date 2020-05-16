@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
-import IndexPage from '../pages/index'
-import AboutPage from '../pages/about'
-import OutroPage from '../pages/outro'
+import IndexPage from '@pages/index'
+import AboutPage from '@pages/about'
+import OutroPage from '@pages/outro'
 
-import SwitchLanguageButton from '../components/SwitchLanguageButton'
+import SwitchLanguageButton from '@components/SwitchLanguageButton'
 
 class DefaultLayout extends Component {
   render() {

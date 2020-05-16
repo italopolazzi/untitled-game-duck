@@ -1,6 +1,15 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 const config = {
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src', 'components'),
+      '@plugins': path.resolve(__dirname, 'src', 'plugins'),
+      '@pages': path.resolve(__dirname, 'src', 'pages'),
+      '@layouts': path.resolve(__dirname, 'src', 'layouts'),
+    }
+  },
   module: {
     rules: [
       {
