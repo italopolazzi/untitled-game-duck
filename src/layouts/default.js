@@ -7,7 +7,7 @@ import AboutPage from '@pages/about'
 import OutroPage from '@pages/outro'
 
 import SwitchLanguageButton from '@components/SwitchLanguageButton'
-import { Grommet, Header, Nav, Anchor, Button, Text, Box, ThemeContext } from 'grommet'
+import { Grommet, Header, Nav, Anchor, Button, Text, Box, ThemeContext,Main } from 'grommet'
 
 import dark_theme from '../themes/dark'
 import light_theme from '../themes/light'
@@ -45,20 +45,19 @@ const DefaultLayout = () => {
           <SwitchLanguageButton />
           {/* main-content */}
           <section id="main-content">
-            <Box>
-
-            </Box>
+            <Main pad="large" >
+              <Switch>
+                <Route path="/" exact component={IndexPage} />
+                <Route path="/about" exact component={AboutPage} />
+                <Route path="/outro" exact component={OutroPage} />
+              </Switch>
+            </Main>
           </section>
         </div>
-        <Switch>
-          <Route path="/" exact component={IndexPage} />
-          <Route path="/about" exact component={AboutPage} />
-          <Route path="/outro" exact component={OutroPage} />
-        </Switch>
       </BrowserRouter>
       {/* </ThemeContext.Extend> */}
     </Grommet >
-  ) 
+  )
 }
 
 export default DefaultLayout

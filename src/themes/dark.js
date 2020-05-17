@@ -50,8 +50,17 @@ const dark_theme = deepFreeze(
       overlay: {
         background: 'rgba(48,48,48,0.5)'
       }
+    },
+    button: {
+      border: {
+        width: "0",
+        radius: '18px'
+      },
+      background: ' #7D4CDB',
+      boxShadow: "4px 4px 7px #553495, -4px -4px 7px #a564ff"
     }
   }
 )
 
 export default dark_theme
+
