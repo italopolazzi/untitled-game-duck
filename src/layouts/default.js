@@ -12,10 +12,17 @@ import { Grommet, Header, Nav, Anchor, Button, Text, Box, ThemeContext,Main } fr
 import dark_theme from '../themes/dark'
 import light_theme from '../themes/light'
 
+const initial_theme = 'light'
+
+const theming = {
+  light: light_theme,
+  dark: dark_theme
+}
+
 const DefaultLayout = () => {
 
-  const [theme, setTheme] = useState(dark_theme)
-  const [themeMode, setThemeMode] = useState('dark')
+  const [theme, setTheme] = useState(theming[initial_theme])
+  const [themeMode, setThemeMode] = useState(initial_theme)
 
   const switchTheme = () => {
 
