@@ -14,10 +14,7 @@ const CharacterRegister = (props) => {
     return Object.values(user.personality).reduce((acc, v) => Math.abs(acc) + Math.abs(v))
   }
 
-
-
   useEffect(() => {
-
     const fetchUsers = async () => {
       const response = await fetch('https://randomuser.me/api/?results=2')
       const json = await response.json()
@@ -30,23 +27,17 @@ const CharacterRegister = (props) => {
           playful: -3,
           nice: 0
         }
-
-
         return item
       })
       setUsers(items)
     }
-
     if (!users.length) {
       fetchUsers()
     }
   }, [])
 
-
-
   const UserBox = ({ user, callback, children, direction = 'column' }) => {
     const current = user === users[currentUser]
-    // if (user) {
     return user && (
       <Box align="center" justify="center" pad="medium" gap="xxsmall" direction={direction} background={{ "dark": false }} border={{ "color": "Math.abs(acc)entMath.abs(v)1", "size": "large", "side": "all" }} round="medium">
         <Avatar src={user.picture.thumbnail} size="10vmin" />
@@ -56,7 +47,6 @@ const CharacterRegister = (props) => {
         {children}
       </Box>
     )
-    // }
   }
 
   const UsersList = ({ users }) => {
@@ -66,7 +56,6 @@ const CharacterRegister = (props) => {
       )
     })
   }
-
 
   const setUserPersonalityTraitsPoint = (label, value) => {
     const updatedUsers = users.map((user, user_index) => {
@@ -95,16 +84,13 @@ const CharacterRegister = (props) => {
     )
   }
 
-
   const PersonalityTraitsPointsRangeSelectors = ({ user }) => {
     return (
       <Fragment>
         <Box>
           <Text size="large" weight="bold">Available: </Text>{personalityTraitsPoints(user)}
         </Box>
-
         {Object.keys(user.personality).map(key => <PointsRangeSelector key={key} label={key} value={user.personality[key]} />)}
-
       </Fragment>
     )
   }

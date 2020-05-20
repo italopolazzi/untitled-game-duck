@@ -1,24 +1,27 @@
 import React, { Fragment } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useTranslation } from 'react-i18next'
 
+import { Select, FormField } from 'grommet'
+
 const SwitchLanguageButton = () => {
   const { t, i18n } = useTranslation()
+  const [value, setValue] = useState(i18n.fallbackLng)
 
-  const changeLanguage = (event) => {
-    const { value } = event.target
+  useEffect(() => {
     i18n.changeLanguage(value)
-  }
+  }, [value])
 
   return (
     <Fragment>
-      <form className="switch-language">
-        <span>{t('Switch Language')}</span>
-        <span>{t('test.new')}</span>
-        {/* <label htmlFor=""></label> */}
-        <input className="switch-language-input" type="button" onClick={changeLanguage} value="en" />
-        <input className="switch-language-input" type="button" onClick={changeLanguage} value="pt" />
-      </form>
+      <FormField label={t('Switch Language')} className="switch-language">
+        <Select
+          options={['pt', 'en']}
+          value={value}
+          onChange={({ option }) => setValue(option)}
+        />
+      </FormField>
     </Fragment>
   )
 }
