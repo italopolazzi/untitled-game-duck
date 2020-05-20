@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useRef } from 'react'
 import animate from './animate'
 
 
-const CanvasContainer = ({ text, animation }) => {
+const CanvasContainer = ({ clicked, animation }) => {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const CanvasContainer = ({ text, animation }) => {
   return (
     <Fragment>
       {/* <canvas ref={canvasRef} width={640} height={400}></canvas> */}
-      {text}
+      {clicked}
     </ Fragment>
   )
 }
