@@ -1,31 +1,38 @@
 import React from 'react'
-import { Box } from 'grommet'
+import { Box, Button } from 'grommet'
 
-const CommandsBar = ({ commands, actions, setActions, setClicked }) => {
+import { connect } from 'react-redux'
 
-  const addAction = action => {
-    if (actions.length < 8) {
-      setClicked(action.type)
-      setActions([...actions, action])
-    }
-  }
+import * as GameActions from '@store/actions/game'
 
-
-
+const CommandsBar = ({ commands, actions, addAction, changeAnimation }) => {
   return (
+    // <Button label="changeAnimation" onClick={() => changeAnimation('test')} />
     <Box round="small" direction="row" align="start" justify="start">
       {commands.map((command, command_index) => {
-        return <Box
+        return <Button
+          disabled={actions.length === 8}
+          icon={<command.icon />}
           key={command_index}
           onClick={() => addAction(command)}
           background="brand"
           pad="small"
           margin={{ horizontal: "xsmall" }} >
-          {<command.icon />}
-        </Box>
+        </Button>
       })}
     </Box>
   )
 }
 
-export default CommandsBar
+
+const mapStateToProps = state => ({
+  commands: state.game.commands,
+  actions: state.game.actions
+})
+
+const mapDispatchToProps = dispatch => ({
+  addAction: command => dispatch(GameActions.addAction(command)),
+  changeAnimation: animation => dispatch(GameActions.changeAnimation(animation))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommandsBar)

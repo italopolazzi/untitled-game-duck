@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
 import { Text, Box } from 'grommet'
+import { connect } from 'react-redux'
 
-const ActionsBar = ({ actions, setActions }) => {
 
-  const removeAction = index => setActions(actions.filter((v, i) => i !== index))
+import * as GameActions from '@store/actions/game'
 
+const ActionsBar = ({ actions, removeAction }) => {
   return (
     <Fragment>
       <Text weight="bold">Next action: {actions.length ? actions[0].type : 'Nenhuma'}</Text>
@@ -30,4 +31,12 @@ const ActionsBar = ({ actions, setActions }) => {
   )
 }
 
-export default ActionsBar
+const mapStateToProps = state => ({
+  actions: state.game.actions
+})
+
+const mapDispatchToProps = dispatch => ({
+  removeAction: action_index => dispatch(GameActions.removeAction(action_index))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActionsBar)

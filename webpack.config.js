@@ -14,6 +14,7 @@ const config = {
       '@layouts': path.resolve(__dirname, 'src', 'layouts'),
       '@themes': path.resolve(__dirname, 'src', 'themes'),
       '@locales': path.resolve(__dirname, 'src', 'locales'),
+      '@store': path.resolve(__dirname, 'src', 'store'),
     }
   },
   module: {
