@@ -14,7 +14,7 @@ const SwitchLanguageButton = () => {
   }, [value])
 
   return (
-    <Fragment>
+    <>
       <FormField label={t('Switch Language')} className="switch-language">
         <Select
           options={['pt', 'en']}
@@ -22,7 +22,7 @@ const SwitchLanguageButton = () => {
           onChange={({ option }) => setValue(option)}
         />
       </FormField>
-    </Fragment>
+    </>
   )
 }
 

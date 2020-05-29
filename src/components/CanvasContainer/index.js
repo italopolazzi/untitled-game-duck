@@ -27,10 +27,10 @@ const CanvasContainer = ({ animation }) => {
 
 
   return (
-    <Fragment>
+    <>
       {/* <canvas ref={canvasRef} width={640} height={400}></canvas> */}
       {animation}
-    </ Fragment>
+    </>
   )
 }
 

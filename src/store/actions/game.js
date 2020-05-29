@@ -12,3 +12,9 @@ export const changeAnimation = animation => ({
   type: 'CHANGE_ANIMATION',
   payload: animation
 })
+
+
+export const decrementNeeds = current_speed => ({
+  type: 'DECREMENT_NEEDS',
+  payload: current_speed
+})

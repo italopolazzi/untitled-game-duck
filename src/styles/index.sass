@@ -1,0 +1,29 @@
+html
+  background: red!important
+
+.grid-component
+  display: grid
+  grid-template-areas: "actions canvas canvas" "actions canvas canvas" "actions time needs" "actions commands needs"
+  grid-gap: 0
+  height: 100vh
+  width: 100vw
+  grid-template-columns: 1fr 3fr 3fr
+  grid-template-rows: 2fr 1fr 1fr
+  & > *
+    overflow: hidden
+
+.actions-bar
+  background: red!important
+  grid-area: actions
+.canvas-container
+  background: blue!important
+  grid-area: canvas
+.commands-bar
+  background: yellow!important
+  grid-area: commands
+.needs-bar
+  background: orange!important
+  grid-area: needs
+.time-bar
+  background: green!important
+  grid-area: time

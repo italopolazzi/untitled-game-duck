@@ -86,12 +86,12 @@ const CharacterRegister = (props) => {
 
   const PersonalityTraitsPointsRangeSelectors = ({ user }) => {
     return (
-      <Fragment>
+      <>
         <Box>
           <Text size="large" weight="bold">Available: </Text>{personalityTraitsPoints(user)}
         </Box>
         {Object.keys(user.personality).map(key => <PointsRangeSelector key={key} label={key} value={user.personality[key]} />)}
-      </Fragment>
+      </>
     )
   }
 
@@ -108,12 +108,12 @@ const CharacterRegister = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <CurrentUser />
       <Grid columns="small" gap="xxsmall">
         <UsersList users={users} />
       </Grid>
-    </Fragment>
+    </>
   )
 }
 

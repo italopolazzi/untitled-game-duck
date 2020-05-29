@@ -7,7 +7,7 @@ import * as GameActions from '@store/actions/game'
 
 const ActionsBar = ({ actions, removeAction }) => {
   return (
-    <Fragment>
+    <>
       <Text weight="bold">Next action: {actions.length ? actions[0].type : 'Nenhuma'}</Text>
       {actions.length === 8 ? <Text weight="normal" color="red" >Fila cheia</Text> : null}
 
@@ -27,7 +27,7 @@ const ActionsBar = ({ actions, removeAction }) => {
           )
         })}
       </Box>
-    </Fragment>
+    </>
   )
 }
 

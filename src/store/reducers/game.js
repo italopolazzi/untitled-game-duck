@@ -1,66 +1,29 @@
-import { Restroom, Gamepad, Cafeteria, Trigger, Aed, Group } from 'grommet-icons'
 
-const commands = [
-  {
-    type: 'baddler',
-    icon: Restroom
-  },
-  {
-    type: 'fun',
-    icon: Gamepad
-  },
-  {
-    type: 'hunger',
-    icon: Cafeteria
-  },
-  {
-    type: 'social',
-    icon: Group
-  },
-  {
-    type: 'energy',
-    icon: Trigger
-  },
-  {
-    type: 'hygiene',
-    icon: Aed
-  }
-]
+import initialState from '@store/state/game'
 
-const needs = {
-  baddler: {
-    icon: Restroom,
-    value: 100
-  },
-  fun: {
-    icon: Gamepad,
-    value: 100
-  },
-  hunger: {
-    icon: Cafeteria,
-    value: 100
-  },
-  social: {
-    icon: Group,
-    value: 100
-  },
-  energy: {
-    icon: Trigger,
-    value: 100
-  },
-  hygiene: {
-    icon: Aed,
-    value: 100
-  }
+
+
+const changeNeed = (data, current_speed) => {
+
+  const { mods, actions } = data
+  const current_action = actions[0]
+
+  // an array that includes 1 mod called "nothing"
+  // OR an array with all the mods objects mapped by key
+  const needs_mods = !current_action ? [mods.nothing] : current_action.mods.map(key => mods[key])
+
+  const new_data = {...data}
+  needs_mods.forEach(mod => {
+    Object.keys(mod).forEach(key => {
+      const value = mod[key] * current_speed
+      new_data.needs[key].value += value
+    })
+  })
+
+  console.log({ new_data});
+  
+  return new_data
 }
-
-const initialState = {
-  needs: { ...needs },
-  commands: [...commands],
-  actions: [],
-  animation: 'Default'
-}
-
 
 const reducer = (state = initialState, action) => {
   const data = state
@@ -79,6 +42,8 @@ const reducer = (state = initialState, action) => {
     case 'CHANGE_ANIMATION':
       data.animation = action.payload
       return { ...data }
+    case 'DECREMENT_NEEDS':
+      return { ...changeNeed(data, action.payload) }
   }
   return state
 }
