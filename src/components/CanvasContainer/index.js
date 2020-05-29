@@ -1,36 +1,26 @@
-import React, { Fragment } from 'react'
-// import React, { Fragment, useEffect, useRef } from 'react'
-
-// import animate from './animate'
+import React from 'react'
+import Lottie from 'react-lottie'
 import { connect } from 'react-redux'
 
+import * as animationData from '@/animations/duck-bathing.json'
 
 const CanvasContainer = ({ animation }) => {
-  // const canvasRef = useRef(null)
 
-  // useEffect(() => {
-  //   const canvas = canvasRef.current
-  //   if (canvas) {
-  //     const context = canvas.getContext('2d')
-  //     const radius = 50
-  //     const circle = {
-  //       radius,
-  //       x: -radius,
-  //       y: radius / 2,
-  //       vel: 1,
-  //       circleColor: "yellow",
-  //       backgroundColor: "blue"
-  //     }
-  //     animate(context, circle)
-  //   }
-  // }, [])
-
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData.default,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid meet'
+    }
+  };
 
   return (
-    <>
-      {/* <canvas ref={canvasRef} width={640} height={400}></canvas> */}
-      {animation}
-    </>
+    <Lottie
+      isStopped={false}
+      isPaused={false}
+      // style="{{position: 'absolute', height: '100%', width: '100%'}}"
+      options={defaultOptions} />
   )
 }
 

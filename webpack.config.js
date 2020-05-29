@@ -8,6 +8,7 @@ const config = {
   },
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, 'src'),
       '@components': path.resolve(__dirname, 'src', 'components'),
       '@plugins': path.resolve(__dirname, 'src', 'plugins'),
       '@pages': path.resolve(__dirname, 'src', 'pages'),
