@@ -14,6 +14,7 @@ const config = {
       '@layouts': path.resolve(__dirname, 'src', 'layouts'),
       '@themes': path.resolve(__dirname, 'src', 'themes'),
       '@locales': path.resolve(__dirname, 'src', 'locales'),
+      '@store': path.resolve(__dirname, 'src', 'store'),
     }
   },
   module: {
@@ -22,16 +23,25 @@ const config = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
         }
       },
       {
         test: /\.html$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: "html-loader"
           }
         ]
+      },
+      {
+        test: /\.sass$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },

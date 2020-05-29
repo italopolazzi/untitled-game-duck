@@ -3,11 +3,10 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
 import IndexPage from '@pages/index'
-import AboutPage from '@pages/about'
-import OutroPage from '@pages/outro'
+import GamePage from '@pages/game'
 
 import SwitchLanguageButton from '@components/SwitchLanguageButton'
-import { Grommet, Header, Nav, Anchor, Button, Text, Box, ThemeContext,Main } from 'grommet'
+import { Grommet, Header, Nav, Anchor, Button, Text, Main } from 'grommet'
 
 import dark_theme from '../themes/dark'
 import light_theme from '../themes/light'
@@ -18,6 +17,10 @@ const theming = {
   light: light_theme,
   dark: dark_theme
 }
+
+import { Provider } from 'react-redux'
+
+import store from '../store'
 
 const DefaultLayout = () => {
 
@@ -35,35 +38,35 @@ const DefaultLayout = () => {
   })
 
   return (
-    <Grommet theme={theme} themeMode={themeMode} full cssVars={true}>
-      {/* <ThemeContext.Extend value={myTheme} > */}
-      <BrowserRouter>
-        <div className="default-layout">
-          {/* navigation */}
-          <Header elevation="xsmall" >
-            <Nav direction="row" background="brand" pad="medium" fill>
-              <Anchor href="/" hoverIndicator label="Home" />
-              <Anchor href="/about" hoverIndicator label="About" />
-              <Anchor href="/outro" hoverIndicator label="Outro" />
-              <Button label="Switch theme" onClick={switchTheme} />
-              <Text>{themeMode === 'dark' ? 'Tema escuro' : 'Tema claro'}</Text>
-            </Nav>
-          </Header>
-          <SwitchLanguageButton />
-          {/* main-content */}
-          <section id="main-content">
-            <Main pad="large" >
-              <Switch>
-                <Route path="/" exact component={IndexPage} />
-                <Route path="/about" exact component={AboutPage} />
-                <Route path="/outro" exact component={OutroPage} />
-              </Switch>
-            </Main>
-          </section>
-        </div>
-      </BrowserRouter>
-      {/* </ThemeContext.Extend> */}
-    </Grommet >
+    <Provider store={store}>
+      <Grommet theme={theme} themeMode={themeMode} full cssVars={true}>
+        {/* <ThemeContext.Extend value={myTheme} > */}
+        <BrowserRouter>
+          <div className="default-layout">
+            {/* navigation */}
+            <Header elevation="xsmall" >
+              <Nav direction="row" background="brand" pad="small" fill>
+                <Anchor href="/" hoverIndicator label="Home" />
+                <Anchor href="/game" hoverIndicator label="Game" />
+                <Button label="Switch theme" onClick={switchTheme} />
+                <Text>{themeMode === 'dark' ? 'Tema escuro' : 'Tema claro'}</Text>
+              </Nav>
+            </Header>
+            {/* <SwitchLanguageButton /> */}
+            {/* main-content */}
+            <section id="main-content">
+              <Main pad="large" >
+                <Switch>
+                  <Route path="/" exact component={IndexPage} />
+                  <Route path="/game" exact component={GamePage} />
+                </Switch>
+              </Main>
+            </section>
+          </div>
+        </BrowserRouter>
+        {/* </ThemeContext.Extend> */}
+      </Grommet >
+    </Provider>
   )
 }
 
