@@ -17,8 +17,8 @@ const ActionsBar = ({ actions, removeAction }) => {
             <Box
               key={action_index}
               round="small"
-              background={action_index === 0 ? false : 'brand'}
-              border={action_index === 0 ? { size: 'small', color: 'brand' } : false}
+              background={action_index === 0 ? 'accent-1' : 'brand'}
+              border={action_index === 0 ? { size: 'small', color: 'brand' } : { color: 'accent-1' }}
               pad="small"
               margin={{ vertical: "xsmall" }}
               onClick={() => removeAction(action_index)} >

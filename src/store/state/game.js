@@ -124,7 +124,7 @@ const state = {
   needs: { ...needs },
   commands: [...commands],
   actions: [],
-  animation: 'DEFAULT'
+  animation: null
 }
 
 export default state

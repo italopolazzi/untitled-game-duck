@@ -2,26 +2,37 @@ import React from 'react'
 import Lottie from 'react-lottie'
 import { connect } from 'react-redux'
 
-import * as animationData from '@/animations/duck-bathing.json'
+import { Text } from 'grommet'
 
 const CanvasContainer = ({ animation }) => {
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData.default,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid meet'
-    }
-  };
+  const currentAnimation = () => {
+    console.log({ animation });
 
-  return (
-    <Lottie
-      isStopped={false}
-      isPaused={false}
-      // style="{{position: 'absolute', height: '100%', width: '100%'}}"
-      options={defaultOptions} />
-  )
+    if (animation) {
+      const defaultOptions = {
+        assetsPath: `./public/images/duck-${animation.type}/`,
+        loop: true,
+        autoplay: true,
+        // animationData: animation.default,
+        animationData: animation,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid meet',
+          // progressiveLoad: true
+        }
+      };
+
+      return <Lottie
+        isStopped={false}
+        isPaused={false}
+        // style="{{position: 'absolute', height: '100%', width: '100%'}}"
+        options={defaultOptions} />
+    } else {
+      return <Text weight="bold"> no animation</Text>
+    }
+  }
+
+  return currentAnimation()
 }
 
 export default connect(state => ({

@@ -1,7 +1,7 @@
 
 import initialState from '@store/state/game'
 
-
+import animations from '@/animations'
 
 const changeNeed = (data, current_speed) => {
 
@@ -12,7 +12,7 @@ const changeNeed = (data, current_speed) => {
   // OR an array with all the mods objects mapped by key
   const needs_mods = !current_action ? [mods.nothing] : current_action.mods.map(key => mods[key])
 
-  const new_data = {...data}
+  const new_data = { ...data }
   needs_mods.forEach(mod => {
     Object.keys(mod).forEach(key => {
       const value = mod[key] * current_speed
@@ -20,8 +20,6 @@ const changeNeed = (data, current_speed) => {
     })
   })
 
-  console.log({ new_data});
-  
   return new_data
 }
 
@@ -30,7 +28,10 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_ACTION':
       if (data.actions.length < 8) {
-        data.animation = action.payload.type
+
+        const animation_key = action.payload.type
+        const animation = animations[animation_key]
+        data.animation = animation ? { type: animation_key, ...animation } : null
         data.actions = [...data.actions, action.payload]
         return { ...data }
       } else {
@@ -38,9 +39,6 @@ const reducer = (state = initialState, action) => {
       }
     case 'REMOVE_ACTION':
       data.actions = [...data.actions.filter((v, i) => i !== action.payload)]
-      return { ...data }
-    case 'CHANGE_ANIMATION':
-      data.animation = action.payload
       return { ...data }
     case 'DECREMENT_NEEDS':
       return { ...changeNeed(data, action.payload) }

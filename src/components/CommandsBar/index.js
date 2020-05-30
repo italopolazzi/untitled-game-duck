@@ -5,16 +5,15 @@ import { connect } from 'react-redux'
 
 import * as GameActions from '@store/actions/game'
 
-const CommandsBar = ({ commands, actions, addAction, changeAnimation }) => {
+const CommandsBar = ({ commands, actions, addAction }) => {
   return (
-    // <Button label="changeAnimation" onClick={() => changeAnimation('test')} />
     <Box round="small" direction="row" align="start" justify="start">
       {commands.map((command, command_index) => {
         return <Button
           disabled={actions.length === 8}
           icon={<command.icon />}
           key={command_index}
-          onClick={() => addAction(command)}
+          onClick={() => { addAction(command) }}
           background="brand"
           pad="small"
           margin={{ horizontal: "xsmall" }} >
@@ -31,8 +30,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addAction: command => dispatch(GameActions.addAction(command)),
-  changeAnimation: animation => dispatch(GameActions.changeAnimation(animation))
+  addAction: command => dispatch(GameActions.addAction(command))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommandsBar)
