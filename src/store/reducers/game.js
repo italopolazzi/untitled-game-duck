@@ -3,45 +3,50 @@ import initialState from '@store/state/game'
 
 import animations from '@/animations'
 
-const changeNeed = (data, current_speed) => {
+const changeNeed = (state, current_speed) => {
 
-  const { mods, actions } = data
+  const { mods, actions } = state
   const current_action = actions[0]
 
   // an array that includes 1 mod called "nothing"
   // OR an array with all the mods objects mapped by key
   const needs_mods = !current_action ? [mods.nothing] : current_action.mods.map(key => mods[key])
 
-  const new_data = { ...data }
+
+
+  const new_needs = { ...state.needs }
+
   needs_mods.forEach(mod => {
+
     Object.keys(mod).forEach(key => {
-      const value = mod[key] * current_speed
-      new_data.needs[key].value += value
+      const correction = 0.1
+      const value = mod[key] * current_speed * correction
+      new_needs[key].value += value
     })
   })
 
-  return new_data
+
+  return new_needs
 }
 
 const reducer = (state = initialState, action) => {
-  const data = state
   switch (action.type) {
     case 'ADD_ACTION':
-      if (data.actions.length < 8) {
-
+      if (state.actions.length < 8) {
         const animation_key = action.payload.type
         const animation = animations[animation_key]
-        data.animation = animation ? { type: animation_key, ...animation } : null
-        data.actions = [...data.actions, action.payload]
-        return { ...data }
+        state.animation = animation ? { type: animation_key, ...animation } : null
+        state.actions = [...state.actions, action.payload]
+        return { ...state }
       } else {
-        return data
+        return state
       }
     case 'REMOVE_ACTION':
-      data.actions = [...data.actions.filter((v, i) => i !== action.payload)]
-      return { ...data }
+      state.actions = [...state.actions.filter((v, i) => i !== action.payload)]
+      return { ...state }
     case 'DECREMENT_NEEDS':
-      return { ...changeNeed(data, action.payload) }
+      const new_needs = changeNeed(state, action.payload)
+      return { ...state, needs: new_needs }
   }
   return state
 }
