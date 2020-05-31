@@ -4,7 +4,6 @@ import { Text, Box, Meter } from 'grommet'
 import { connect } from 'react-redux'
 
 const NeedsBar = ({ needs }) => {
-  console.log({ needs });
 
   const needs_style = {
     display: 'grid',

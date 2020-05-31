@@ -6,26 +6,11 @@ import { connect } from 'react-redux'
 
 import * as GameActions from "@store/actions/game";
 
-const TimeBar = ({ decrementNeeds }) => {
-  const DAY_SECONDS = 86800
-  const [current_speed, setCurrentSpeed] = useState(1)
-  const [day_time, setDayTime] = useState(Math.floor(DAY_SECONDS / 60 / current_speed))
 
-  const decrementer = () => {
-    if (current_speed > 0 && current_speed <= 3) {
-      const new_day_time = day_time + current_speed
-      setDayTime(new_day_time)
-    }
-  }
-
-  const timeout = setTimeout(() => {
-    decrementer()
-    decrementNeeds(current_speed)
-  }, 1000);
-
+const TimeBar = ({ current_speed, setCurrentSpeed }) => {
   return (
     <Box direction="row" align="center" justify="center">
-      
+
       <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(0)} label="Pause" />
       <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(1)} label="1" />
       <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(2)} label="2" />
@@ -33,7 +18,7 @@ const TimeBar = ({ decrementNeeds }) => {
 
       <Box direction="column" pad="small" border={{ size: 'small', color: 'accent-1' }}>
         <Text weight="bold">Current Speed: {current_speed}</Text>
-        <Text weight="bold">{day_time}</Text>
+        {/* <Text weight="bold">{day_time}</Text> */}
       </Box>
 
     </Box>
@@ -41,11 +26,11 @@ const TimeBar = ({ decrementNeeds }) => {
 }
 
 const mapStateToProps = state => ({
-  
+  current_speed: state.game.current_speed
 })
 
 const mapDispatchToProps = dispatch => ({
-  decrementNeeds: current_speed => dispatch(GameActions.decrementNeeds(current_speed))
+  setCurrentSpeed: current_speed => dispatch(GameActions.setCurrentSpeed(current_speed))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimeBar)

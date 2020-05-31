@@ -3,39 +3,57 @@ import initialState from '@store/state/game'
 
 import animations from '@/animations'
 
-const changeNeed = (state, current_speed) => {
 
-  const { mods, actions } = state
+
+const updateGameState = (state) => {
+
+  const { mods, actions, current_speed } = state
   const current_action = actions[0]
 
   // an array that includes 1 mod called "nothing"
   // OR an array with all the mods objects mapped by key
-  const needs_mods = !current_action ? [mods.nothing] : current_action.mods.map(key => mods[key])
+  let needs_mods = null
+  let new_needs = { ...state.needs }
+  let new_animation = null
+
+  if (!current_action) {
+    needs_mods = [mods.nothing]
+  } else {
+    needs_mods = current_action.mods.map(key => mods[key])
+
+    const animation_key = current_action.type
+    const current_animation = animations[animation_key]
+    new_animation = { type: animation_key, ...current_animation }
 
 
-
-  const new_needs = { ...state.needs }
+  }
 
   needs_mods.forEach(mod => {
-
     Object.keys(mod).forEach(key => {
-      const correction = 0.1
+      const correction = 0.01
       const value = mod[key] * current_speed * correction
       new_needs[key].value += value
     })
   })
 
 
-  return new_needs
+  // update expired actions here
+  const new_actions = [...state.actions]
+
+  if (state.current_animation) {
+    if (new_animation && new_animation.type === state.current_animation.type) {
+      return { needs: new_needs, actions: new_actions }
+    }
+  }
+  return { needs: new_needs, actions: new_actions, current_animation: new_animation }
+
+
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_ACTION':
       if (state.actions.length < 8) {
-        const animation_key = action.payload.type
-        const animation = animations[animation_key]
-        state.animation = animation ? { type: animation_key, ...animation } : null
         state.actions = [...state.actions, action.payload]
         return { ...state }
       } else {
@@ -44,9 +62,11 @@ const reducer = (state = initialState, action) => {
     case 'REMOVE_ACTION':
       state.actions = [...state.actions.filter((v, i) => i !== action.payload)]
       return { ...state }
-    case 'DECREMENT_NEEDS':
-      const new_needs = changeNeed(state, action.payload)
-      return { ...state, needs: new_needs }
+    case 'UPDATE_GAME':
+      const new_parts = updateGameState(state)
+      return { ...state, ...new_parts }
+    case 'SET_CURRENT_SPEED':
+      return { ...state, current_speed: action.payload }
   }
   return state
 }

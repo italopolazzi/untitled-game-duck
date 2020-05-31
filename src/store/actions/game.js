@@ -14,7 +14,11 @@ export const changeAnimation = animation => ({
 })
 
 
-export const decrementNeeds = current_speed => ({
-  type: 'DECREMENT_NEEDS',
+export const updateGame = () => ({
+  type: 'UPDATE_GAME'
+})
+
+export const setCurrentSpeed = current_speed => ({
+  type: 'SET_CURRENT_SPEED',
   payload: current_speed
 })
