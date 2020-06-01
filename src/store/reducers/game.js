@@ -53,7 +53,7 @@ const updateGameState = (state) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_ACTION':
-      if (state.actions.length < 8) {
+      if (state.actions.length < 6) {
         state.actions = [...state.actions, action.payload]
         return { ...state }
       } else {

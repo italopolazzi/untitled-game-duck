@@ -1,31 +1,44 @@
-import React, { Fragment } from 'react'
-import { Text, Box } from 'grommet'
+import React from 'react'
+import { Box } from 'grommet'
 import { connect } from 'react-redux'
 
 
 import * as GameActions from '@store/actions/game'
 
+import { AnimateGroup } from 'react-animation'
+
+
+import './style.sass'
+
+
+
 const ActionsBar = ({ actions, removeAction }) => {
+
+  const items = actions.map((action, action_index) => {
+    return (
+      <Box
+        key={action_index}
+        round="small"
+        background={action_index === 0 ? 'accent-1' : 'brand'}
+        border={action_index === 0 ? { size: 'small', color: 'brand' } : { color: 'accent-1' }}
+        pad="small"
+        margin={{ vertical: "xsmall" }}
+        onClick={() => removeAction(action_index)} >
+        {<action.icon />}
+      </Box>
+    )
+  })
+
   return (
     <>
-      {/* <Text weight="bold">Next action: {actions.length ? actions[0].type : 'Nenhuma'}</Text>
-      {actions.length === 8 ? <Text weight="normal" color="red" >Fila cheia</Text> : null} */}
-
-      <Box responsive={true} direction="column-reverse" align="start" justify="start">
-        {actions.map((action, action_index) => {
-          return (
-            <Box
-              key={action_index}
-              round="small"
-              background={action_index === 0 ? 'accent-1' : 'brand'}
-              border={action_index === 0 ? { size: 'small', color: 'brand' } : { color: 'accent-1' }}
-              pad="small"
-              margin={{ vertical: "xsmall" }}
-              onClick={() => removeAction(action_index)} >
-              {<action.icon />}
-            </Box>
-          )
-        })}
+      <Box responsive={true} direction="column" align="start" justify="start">
+        <AnimateGroup
+        component={null}
+          animation="bounce"
+          duration="300"
+        >
+          {items}
+        </AnimateGroup>
       </Box>
     </>
   )
