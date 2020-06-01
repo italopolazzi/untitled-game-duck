@@ -8,8 +8,8 @@ import * as GameActions from '@store/actions/game'
 const ActionsBar = ({ actions, removeAction }) => {
   return (
     <>
-      <Text weight="bold">Next action: {actions.length ? actions[0].type : 'Nenhuma'}</Text>
-      {actions.length === 8 ? <Text weight="normal" color="red" >Fila cheia</Text> : null}
+      {/* <Text weight="bold">Next action: {actions.length ? actions[0].type : 'Nenhuma'}</Text>
+      {actions.length === 8 ? <Text weight="normal" color="red" >Fila cheia</Text> : null} */}
 
       <Box responsive={true} direction="column-reverse" align="start" justify="start">
         {actions.map((action, action_index) => {

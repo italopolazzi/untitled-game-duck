@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import GamePage from '@pages/game'
+import GamePage from '@pages/game/index'
 
 import { Grommet, Main } from 'grommet'
 

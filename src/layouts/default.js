@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
-import IndexPage from '@pages/index'
-import GamePage from '@pages/game'
+import HomePage from '@pages/home/index'
+import GamePage from '@pages/game/index'
 
 import SwitchLanguageButton from '@components/SwitchLanguageButton'
 import { Grommet, Header, Nav, Anchor, Button, Text, Main } from 'grommet'
@@ -57,7 +57,7 @@ const DefaultLayout = () => {
             <section id="main-content">
               <Main pad="large" >
                 <Switch>
-                  <Route path="/" exact component={IndexPage} />
+                  <Route path="/" exact component={HomePage} />
                   <Route path="/game" exact component={GamePage} />
                 </Switch>
               </Main>

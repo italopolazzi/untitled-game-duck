@@ -1,38 +1,36 @@
 import React from 'react'
-import { Text, Box, Meter } from 'grommet'
+import { Text, Box, Meter, Button } from 'grommet'
 
 import { connect } from 'react-redux'
 
-const NeedsBar = ({ needs }) => {
+import * as GameActions from '@store/actions/game'
 
-  const needs_style = {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gridTemplateRows: '1fr 1fr 1fr',
-    height: '100%',
-    width: '100%',
-  }
+import './style.sass'
+
+const NeedsBar = ({ needs, commands, addAction }) => {
+
   const al = (key, value) => alert(`${key}: ${value}`)
   return (
-    <Box border={{ size: 'small', color: 'brand' }} style={needs_style} pad="small">
+    <Box border={{ size: 'small', color: 'brand' }} className="needs-style" pad="small">
 
       {
-        Object.keys(needs).map(need_key => {
+        commands.map(command => {
+
+          const key = command.type
           // const { value, icon } = needs[need_key]
-          const { value } = needs[need_key]
+          const { value } = needs[key]
           return (
-            <Box key={need_key} direction="column">
-              {/* <Box direction="row" className="need-top"><Cafeteria /><Text weight="bold" margin={{ horizontal: 'small' }}>{need_key}</Text></Box> */}
-              <Box direction="row" className="need-top"><Text weight="bold" margin={{ horizontal: 'small' }}>{need_key}</Text></Box>
-              {/* <Box direction="row" className="need-bottom">{value}</Box> */}
+            <Box key={key} direction="row" align="center" justify="between">
+              {/* <Box direction="row" ><Text weight="bold" margin={{ horizontal: 'small' }}>{key}</Text></Box> */}
+              <Button className="need-action" icon={<command.icon />} title={key} onClick={() => addAction(command)} />
               <Meter
                 round
-                className="need-bottom"
+                className="need-value"
                 values={[{
                   value,
-                  color: value < 20 ? 'red' : 'green',
-                  label: need_key,
-                  onClick: () => { al(need_key, value) }
+                  color: value < 20 ? 'accent-2' : 'accent-1',
+                  label: key,
+                  onClick: () => { al(key, value) }
                 }]}
                 aria-label="meter"
               />
@@ -44,4 +42,13 @@ const NeedsBar = ({ needs }) => {
   )
 }
 
-export default connect(state => ({ needs: state.game.needs }))(NeedsBar)
+const mapStateToProps = state => ({
+  needs: state.game.needs,
+  commands: state.game.commands
+})
+
+const mapDispatchToProps = dispatch => ({
+  addAction: command => dispatch(GameActions.addAction(command))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NeedsBar)

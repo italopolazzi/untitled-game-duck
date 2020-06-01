@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import CharacterRegister from '@components/CharacterRegister'
 
-const IndexPage = () => {
+const HomePage = () => {
   return (
     <>
       This is the index page content
@@ -11,4 +11,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default HomePage

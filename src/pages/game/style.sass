@@ -1,0 +1,21 @@
+.grid-component
+  display: grid
+  grid-template-areas: "actions canvas canvas" "actions canvas canvas" "actions time needs" "actions commands needs"
+  height: 100vh
+  width: 100vw
+  grid-template-columns: auto 3fr 3fr
+  grid-template-rows: 1fr auto auto
+  grid-gap: 1rem
+  & > *
+    overflow: hidden
+
+.actions-bar
+  grid-area: actions
+.canvas-container
+  grid-area: canvas
+.commands-bar
+  grid-area: commands
+.needs-bar
+  grid-area: needs
+.time-bar
+  grid-area: time
