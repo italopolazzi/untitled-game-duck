@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-import { Box, Button, Text } from 'grommet'
+import { Box, Button } from 'grommet'
+import { Pause } from 'grommet-icons'
+
+
+import Icon from '@mdi/react'
+import { mdiPause, mdiChevronRight, mdiChevronDoubleRight, mdiChevronTripleRight } from '@mdi/js'
+
+
 
 import { connect } from 'react-redux'
 
@@ -8,20 +15,31 @@ import * as GameActions from "@store/actions/game";
 
 
 const TimeBar = ({ current_speed, setCurrentSpeed }) => {
+
+  const buttons = [
+    { label: 'Pause', icon: mdiPause },
+    { label: 'Vel 1', icon: mdiChevronRight },
+    { label: 'Vel 2', icon: mdiChevronDoubleRight },
+    { label: 'Vel 3', icon: mdiChevronTripleRight },
+  ]
+
   return (
     <Box direction="row" align="center" justify="center">
 
-      <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(0)} label="Pause" />
-      <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(1)} label="1" />
-      <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(2)} label="2" />
-      <Button pad="small" border={{ size: 'small', color: 'accent-1' }} onClick={() => setCurrentSpeed(3)} label="3" />
+      {buttons.map((button, button_index) => {
+        return (
+          <Button
+            key={button_index}
+            margin="xsmall"
+            title={button.label}
+            onClick={() => setCurrentSpeed(button_index)}
+            icon={<Icon path={button.icon} size={1} />}
+          />
+        )
+      })}
 
-      <Box direction="column" pad="small" border={{ size: 'small', color: 'accent-1' }}>
-        <Text weight="bold">Current Speed: {current_speed}</Text>
-        {/* <Text weight="bold">{day_time}</Text> */}
-      </Box>
 
-    </Box>
+    </Box >
   )
 }
 

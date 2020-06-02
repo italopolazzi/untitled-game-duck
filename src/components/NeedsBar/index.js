@@ -1,5 +1,7 @@
 import React from 'react'
-import { Text, Box, Meter, Button } from 'grommet'
+import { Box, Meter, Button } from 'grommet'
+
+import Icon from '@mdi/react'
 
 import { connect } from 'react-redux'
 
@@ -22,7 +24,7 @@ const NeedsBar = ({ needs, commands, addAction }) => {
           return (
             <Box key={key} direction="row" align="center" justify="between">
               {/* <Box direction="row" ><Text weight="bold" margin={{ horizontal: 'small' }}>{key}</Text></Box> */}
-              <Button className="need-action" icon={<command.icon />} title={key} onClick={() => addAction(command)} />
+              <Button className="need-action" icon={<Icon path={command.icon} size={1} />} title={key} onClick={() => addAction(command)} />
               <Meter
                 round
                 className="need-value"

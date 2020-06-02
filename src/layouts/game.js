@@ -7,11 +7,13 @@ import { Provider } from 'react-redux'
 
 import store from '../store'
 
+import theme from '@/themes/light'
+
 const GameLayout = () => {
 
   return (
     <Provider store={store}>
-      <Grommet full cssVars={true}>
+      <Grommet theme={theme} full cssVars={true}>
         {/* <ThemeContext.Extend value={myTheme} > */}
 
         <div className="game-layout">

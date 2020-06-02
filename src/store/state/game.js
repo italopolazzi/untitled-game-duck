@@ -1,61 +1,61 @@
-import { Restroom, Gamepad, Cafeteria, Trigger, Aed, Group } from 'grommet-icons'
+import { mdiShower, mdiGamepadVariantOutline, mdiAccountGroupOutline, mdiFoodAppleOutline, mdiPaperRollOutline, mdiSleep } from '@mdi/js'
 
 const commands = [
   {
     type: 'baddler',
-    icon: Restroom,
+    icon: mdiPaperRollOutline,
     mods: ['pooping', 'nothing', 'eating']
   },
   {
     type: 'fun',
-    icon: Gamepad,
+    icon: mdiGamepadVariantOutline,
     mods: ['playing']
   },
   {
     type: 'hunger',
-    icon: Cafeteria,
+    icon: mdiFoodAppleOutline,
     mods: ['eating']
   },
   {
     type: 'social',
-    icon: Group,
+    icon: mdiAccountGroupOutline,
     mods: ['talking']
   },
   {
     type: 'energy',
-    icon: Trigger,
+    icon: mdiSleep,
     mods: ['sleeping']
   },
   {
     type: 'hygiene',
-    icon: Aed,
+    icon: mdiShower,
     mods: ['bathing']
   }
 ]
 
 const needs = {
   baddler: {
-    icon: Restroom,
+    icon: mdiPaperRollOutline,
     value: 100,
   },
   fun: {
-    icon: Gamepad,
+    icon: mdiGamepadVariantOutline,
     value: 100,
   },
   hunger: {
-    icon: Cafeteria,
+    icon: mdiFoodAppleOutline,
     value: 100,
   },
   social: {
-    icon: Group,
+    icon: mdiAccountGroupOutline,
     value: 100,
   },
   energy: {
-    icon: Trigger,
+    icon: mdiSleep,
     value: 100,
   },
   hygiene: {
-    icon: Aed,
+    icon: mdiShower,
     value: 100,
   }
 }
