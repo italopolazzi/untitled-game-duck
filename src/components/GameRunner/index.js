@@ -4,50 +4,71 @@ import { connect } from 'react-redux'
 import { Text } from 'grommet'
 import * as GameActions from '@store/actions/game'
 
+
 const updateNeeds = state => {
-  const { current_speed, mods, needs, actions } = state
-  const current_action = actions[0]
-  const needs_mods = current_action ? current_action.mods.map(key => mods[key]) : [mods.nothing];
   const correction = 0.1
 
-  needs_mods.forEach(mod => {
-    Object.keys(mod).forEach(key => {
-      const value = mod[key] * current_speed * correction
+  const { current_speed, mods, needs, actions } = state
+  const current_action = actions[0]
+
+
+  const needs_mods = current_action ? current_action.mods.map(key => mods[key]) : [mods.nothing];
+
+  const mods_changes = needs_mods.map(mod => {
+    const { changes, fill } = mod
+    const mod_changes = Object.keys(changes).map(key => {
+      const value = changes[key] * current_speed * correction
       const current_need_value = needs[key].value
       const result = current_need_value + value
+      let new_need_value = null
+      let filled = false
+
       if (result > 100) {
-        needs[key].value = 100
+        new_need_value = 100
+        filled = key === fill ? key : false
       } else if (result < 0) {
-        needs[key].value = 0
+        new_need_value = 0
       } else {
-        needs[key].value = result
+        new_need_value = result
       }
+      needs[key].value = new_need_value
+      return filled
     })
+    return mod_changes.filter(v => typeof v === "string")[0]
   })
-  return needs
+
+
+
+  const have_finished = mods_changes.filter(v => v)[0]
+
+  return [needs, have_finished]
 }
 
-const updateActions = state => {
+const updateActions = (state, have_finished) => {
   const { actions } = state
   if (actions.length) {
-    const current_action = actions[0]
-    // removes the first action (current action) if it's expired
-    // else updates the actions with the new times value
-    if (current_action.times <= 0) {
-      actions.splice(0, 1)
-    }
-    // decrement 'times' to expire the action during current_speed
-    else if (current_action.times) {
-      actions[0].times -= state.current_speed
-    }
 
+    if (have_finished) {
+      actions.splice(0, 1)
+    } else {
+      const current_action = actions[0]
+      // removes the first action (current action) if it's expired
+      // else updates the actions with the new times value
+      if (current_action.times <= 0) {
+        actions.splice(0, 1)
+      }
+      // decrement 'times' to expire the action during current_speed
+      else if (current_action.times) {
+        actions[0].times -= state.current_speed
+      }
+    }
   }
   return actions
 }
 
 const mountUpdatedStateValues = (game_state) => {
-  const updated_needs = updateNeeds(game_state)
-  const updated_actions = updateActions(game_state)
+  const [updated_needs, have_finished] = updateNeeds(game_state)
+  const updated_actions = updateActions(game_state, have_finished)
   return { actions: updated_actions, needs: updated_needs }
 
 }
