@@ -13,7 +13,6 @@ export const changeAnimation = animation => ({
   payload: animation
 })
 
-
 export const setCurrentSpeed = current_speed => ({
   type: 'SET_CURRENT_SPEED',
   payload: current_speed
@@ -29,15 +28,21 @@ export const setNeeds = needs => ({
   payload: needs
 })
 
+export const setMood = mood => ({
+  type: 'SET_MOOD',
+  payload: mood
+})
+
 export const setCurrentAnimation = current_animation => ({
   type: 'SET_CURRENT_ANIMATION',
   payload: current_animation
 })
 
 export const updateGame = updated_state_values => {
-  const { actions, needs } = updated_state_values
+  const { actions, needs, mood } = updated_state_values
   return dispatch => {
     dispatch(setNeeds({ ...needs }))
     dispatch(setActions([...actions]))
+    dispatch(setMood({ ...mood }))
   }
 }

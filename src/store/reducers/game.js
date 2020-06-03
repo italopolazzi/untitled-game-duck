@@ -18,10 +18,13 @@ const cases = {
     return { ...state, actions: [...action.payload] }
   },
   SET_NEEDS: (state, action) => {
-    return { ...state, needs: {...action.payload} }
+    return { ...state, needs: { ...action.payload } }
   },
   SET_CURRENT_SPEED: (state, action) => {
     return { ...state, current_speed: action.payload }
+  },
+  SET_MOOD: (state, action) => {
+    return { ...state, mood: action.payload }
   }
 }
 

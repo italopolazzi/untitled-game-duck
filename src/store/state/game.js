@@ -175,7 +175,9 @@ const state = {
   current_animation: null,
   current_speed: 1,
   mood: {
-    value: 10
+    value: 10,
+    label: 'unhappy',
+    modifiers: []
   }
 }
 

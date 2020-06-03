@@ -66,11 +66,18 @@ const updateActions = (state, have_finished) => {
   return actions
 }
 
+const updateMood = (state) => {
+  const percentage = 0.1
+  const mood_main_value = Object.values(state.needs).reduce((acc, need) => (percentage * need.value) + acc, 0)
+
+  return {...state.mood, value: mood_main_value}
+}
+
 const mountUpdatedStateValues = (game_state) => {
   const [updated_needs, have_finished] = updateNeeds(game_state)
   const updated_actions = updateActions(game_state, have_finished)
-  return { actions: updated_actions, needs: updated_needs }
-
+  const updated_mood = updateMood(game_state)
+  return { actions: updated_actions, needs: updated_needs, mood: updated_mood }
 }
 
 const GameRunner = ({ updateGame, game_state }) => {
