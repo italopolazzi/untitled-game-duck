@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react'
-
+import React from 'react'
 import { Box, Button } from 'grommet'
-import { Pause } from 'grommet-icons'
-
-
 import Icon from '@mdi/react'
 import { mdiPause, mdiChevronRight, mdiChevronDoubleRight, mdiChevronTripleRight } from '@mdi/js'
-
-
-
 import { connect } from 'react-redux'
-
 import * as GameActions from "@store/actions/game";
 
 
@@ -37,7 +29,6 @@ const TimeBar = ({ current_speed, setCurrentSpeed }) => {
           />
         )
       })}
-
 
     </Box >
   )

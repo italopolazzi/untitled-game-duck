@@ -11,6 +11,7 @@ import './style.sass'
 
 const NeedsBar = ({ needs, commands, addAction }) => {
 
+
   const al = (key, value) => alert(`${key}: ${value}`)
   return (
     <Box border={{ size: 'small', color: 'brand' }} className="needs-style" pad="small">

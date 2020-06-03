@@ -1,61 +1,88 @@
-import { mdiShower, mdiGamepadVariantOutline, mdiAccountGroupOutline, mdiFoodAppleOutline, mdiPaperRollOutline, mdiSleep } from '@mdi/js'
+import {
+  mdiShower as HYGIENE_ICON,
+  mdiGamepadVariantOutline as FUN_ICON,
+  mdiAccountGroupOutline as SOCIAL_ICON,
+  mdiFoodAppleOutline as HUNGER_ICON,
+  mdiPaperRollOutline as BADDLER_ICON,
+  mdiSleep as ENERGY_ICON
+} from '@mdi/js'
+
+// '/ 1000' is just for dev purposes
+
+const baddler = Object.freeze({
+  type: 'baddler',
+  icon: BADDLER_ICON,
+  mods: ['pooping', 'nothing', 'eating'],
+  times: 15000 / 1000
+})
+
+const fun = Object.freeze({
+  type: 'fun',
+  icon: FUN_ICON,
+  mods: ['playing'],
+  times: 120000 / 1000
+})
+
+const hunger = Object.freeze({
+  type: 'hunger',
+  icon: HUNGER_ICON,
+  mods: ['eating'],
+  times: 15000 / 1000
+})
+
+const social = Object.freeze({
+  type: 'social',
+  icon: SOCIAL_ICON,
+  mods: ['talking'],
+  times: 15000 / 1000
+})
+
+const energy = Object.freeze({
+  type: 'energy',
+  icon: ENERGY_ICON,
+  mods: ['sleeping'],
+  times: 480000 / 1000
+})
+
+const hygiene = Object.freeze({
+  type: 'hygiene',
+  icon: HYGIENE_ICON,
+  mods: ['bathing'],
+  times: 20000 / 1000
+})
 
 const commands = [
-  {
-    type: 'baddler',
-    icon: mdiPaperRollOutline,
-    mods: ['pooping', 'nothing', 'eating']
-  },
-  {
-    type: 'fun',
-    icon: mdiGamepadVariantOutline,
-    mods: ['playing']
-  },
-  {
-    type: 'hunger',
-    icon: mdiFoodAppleOutline,
-    mods: ['eating']
-  },
-  {
-    type: 'social',
-    icon: mdiAccountGroupOutline,
-    mods: ['talking']
-  },
-  {
-    type: 'energy',
-    icon: mdiSleep,
-    mods: ['sleeping']
-  },
-  {
-    type: 'hygiene',
-    icon: mdiShower,
-    mods: ['bathing']
-  }
+  baddler,
+  fun,
+  hunger,
+  social,
+  energy,
+  hygiene
 ]
 
 const needs = {
   baddler: {
-    icon: mdiPaperRollOutline,
+    icon: BADDLER_ICON,
     value: 100,
   },
   fun: {
-    icon: mdiGamepadVariantOutline,
+    icon: FUN_ICON,
     value: 100,
   },
   hunger: {
-    icon: mdiFoodAppleOutline,
+    icon: HUNGER_ICON,
     value: 100,
   },
   social: {
-    icon: mdiAccountGroupOutline,
+    icon: SOCIAL_ICON,
     value: 100,
   },
   energy: {
-    icon: mdiSleep,
+    icon: ENERGY_ICON,
     value: 100,
   },
   hygiene: {
-    icon: mdiShower,
+    icon: HYGIENE_ICON,
     value: 100,
   }
 }
@@ -125,7 +152,10 @@ const state = {
   commands: [...commands],
   actions: [],
   current_animation: null,
-  current_speed: 1
+  current_speed: 1,
+  mood: {
+    value: 10
+  }
 }
 
 export default state

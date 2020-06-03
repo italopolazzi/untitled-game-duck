@@ -1,33 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Lottie from 'react-lottie'
 import { connect } from 'react-redux'
-
-
-
 import { Text } from 'grommet'
-import * as GameActions from '@store/actions/game'
 
-const CanvasContainer = ({ current_animation, updateGame }) => {
+import animations from '@/animations'
+
+const CanvasContainer = ({ actions }) => {
+  const [animation, setAnimation] = useState()
 
   useEffect(() => {
-    let req = null
-    const animate = () => {
-      updateGame()
-      req = requestAnimationFrame(animate)
+    const current_action = actions[0]
+    if (current_action) {
+      const type = current_action.type
+      setAnimation({ type, ...animations[type] })
     }
-    animate()
-    return () => cancelAnimationFrame(req)
-  }, [])
 
+  }, [actions[0]])
 
   const currentAnimation = () => {
-    if (current_animation) {
+    if (animation) {
       const defaultOptions = {
-        assetsPath: `./public/images/duck-${current_animation.type}/`,
+        assetsPath: `./public/images/duck-${animation.type}/`,
         loop: true,
         autoplay: true,
-        // animationData: current_animation.default,
-        animationData: current_animation,
+        // animationData: animation.default,
+        animationData: animation,
         rendererSettings: {
           preserveAspectRatio: 'xMidYMid meet',
           // progressiveLoad: true
@@ -37,7 +34,6 @@ const CanvasContainer = ({ current_animation, updateGame }) => {
       return <Lottie
         isStopped={false}
         isPaused={false}
-        // style="{{position: 'absolute', height: '100%', width: '100%'}}"
         options={defaultOptions} />
     } else {
       return <Text weight="bold"> no current_animation</Text>
@@ -48,11 +44,7 @@ const CanvasContainer = ({ current_animation, updateGame }) => {
 }
 
 const mapStateToProps = state => ({
-  current_animation: state.game.current_animation
+  actions: state.game.actions
 })
 
-const mapDispatchToProps = dispatch => ({
-  updateGame: () => dispatch(GameActions.updateGame())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CanvasContainer)
+export default connect(mapStateToProps)(CanvasContainer)
