@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Meter, Button } from 'grommet'
+import { Box, Meter, Button, Text } from 'grommet'
 
 import Icon from '@mdi/react'
 
@@ -26,17 +26,20 @@ const NeedsBar = ({ needs, commands, addAction }) => {
             <Box key={key} direction="row" align="center" justify="between">
               {/* <Box direction="row" ><Text weight="bold" margin={{ horizontal: 'small' }}>{key}</Text></Box> */}
               <Button className="need-action" icon={<Icon path={command.icon} size={1} />} title={key} onClick={() => addAction(command)} />
-              <Meter
-                round
-                className="need-value"
-                values={[{
-                  value,
-                  color: value < 20 ? 'accent-2' : 'accent-1',
-                  label: key,
-                  onClick: () => { al(key, value) }
-                }]}
-                aria-label="meter"
-              />
+              <Box key={key} direction="column" align="start" justify="between">
+                <Text weight="bold">{key}</Text>
+                <Meter
+                  round
+                  className="need-value"
+                  values={[{
+                    value,
+                    color: value < 20 ? 'accent-2' : 'accent-1',
+                    label: key,
+                    onClick: () => { al(key, value) }
+                  }]}
+                  aria-label="meter"
+                />
+              </Box>
             </Box>
           )
         })

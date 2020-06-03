@@ -16,8 +16,7 @@ const TimeBar = ({ current_speed, setCurrentSpeed }) => {
   ]
 
   return (
-    <Box direction="row" align="center" justify="center">
-
+    <Box fill direction="row" align="center" justify="center">
       {buttons.map((button, button_index) => {
         return (
           <Button
@@ -29,7 +28,6 @@ const TimeBar = ({ current_speed, setCurrentSpeed }) => {
           />
         )
       })}
-
     </Box >
   )
 }
