@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CanvasContainer from '@components/CanvasContainer'
+import AnimationContainer from '@components/AnimationContainer'
 import MoodBar from '@components/MoodBar'
 import ActionsBar from '@components/ActionsBar'
 import NeedsBar from '@components/NeedsBar'
@@ -21,8 +21,8 @@ const GamePage = (props) => {
       </div>
 
 
-      <div className="canvas-container">
-        <CanvasContainer />
+      <div className="animation-container">
+        <AnimationContainer />
       </div>
 
       <div className="needs-bar">

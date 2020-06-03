@@ -5,7 +5,7 @@ import { Text } from 'grommet'
 
 import animations from '@/animations'
 
-const CanvasContainer = ({ actions }) => {
+const AnimationContainer = ({ actions }) => {
   const [animation, setAnimation] = useState()
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const mapStateToProps = state => ({
   actions: state.game.actions
 })
 
-export default connect(mapStateToProps)(CanvasContainer)
+export default connect(mapStateToProps)(AnimationContainer)
