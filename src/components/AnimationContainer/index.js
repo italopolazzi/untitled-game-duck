@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Lottie from 'react-lottie'
 import { connect } from 'react-redux'
-import { Text } from 'grommet'
+import { Box, Text } from 'grommet'
 
 import animations from '@/animations'
+import './style.sass'
+
 
 const AnimationContainer = ({ actions }) => {
   const [animation, setAnimation] = useState()
@@ -18,29 +20,29 @@ const AnimationContainer = ({ actions }) => {
   }, [actions[0]])
 
   const currentAnimation = () => {
-    if (animation) {
-      const defaultOptions = {
-        assetsPath: `./public/images/duck-${animation.type}/`,
-        loop: true,
-        autoplay: true,
-        // animationData: animation.default,
-        animationData: animation,
-        rendererSettings: {
-          preserveAspectRatio: 'xMidYMid meet',
-          // progressiveLoad: true
-        }
-      };
+    const defaultOptions = {
+      assetsPath: `./public/images/duck-${animation.type}/`,
+      loop: true,
+      autoplay: true,
+      // animationData: animation.default,
+      animationData: animation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid meet',
+        // progressiveLoad: true
+      }
+    };
 
-      return <Lottie
+    return (
+      <Lottie
         isStopped={false}
         isPaused={false}
         options={defaultOptions} />
-    } else {
-      return <Text weight="bold"> no current_animation</Text>
-    }
+    )
   }
 
-  return currentAnimation()
+  return <Box fill={true} className="animation-display">
+    {animation && currentAnimation() || <Text weight="bold">NO_ANIMATION</Text>}
+  </Box>
 }
 
 const mapStateToProps = state => ({
