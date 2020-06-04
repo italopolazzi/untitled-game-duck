@@ -8,7 +8,7 @@ import Emoji from '@/components/Emoji/index'
 
 const MoodModButton = props => {
   const [drop, setDrop] = useState(false)
-  const { emoji, value, label, description, timeout } = props.mood_mod
+  const { emoji, value, label, description, timeout } = props.mod
 
   return (
     <DropButton
@@ -60,66 +60,7 @@ const MoodModButton = props => {
   )
 }
 
-const MoodModsBar = props => {
-
-  const mood_mods = {
-    sad: {
-      value: -10,
-      timeout: 10000,
-      emoji: '😥',
-      label: 'sad',
-      description: 'Duck is sad'
-    },
-    happy: {
-      value: 10,
-      timeout: 10000,
-      emoji: '😄',
-      label: 'happy',
-      description: 'Duck is happy'
-    },
-    proud: {
-      value: 15,
-      timeout: 10000,
-      emoji: '😊',
-      label: 'proud',
-      description: 'Duck is proud'
-    },
-    loved: {
-      value: 30,
-      timeout: 10000,
-      emoji: '🥰',
-      label: 'loved',
-      description: 'Duck is loved'
-    },
-    playful: {
-      value: 25,
-      timeout: 10000,
-      emoji: '🤪',
-      label: 'playful',
-      description: 'Duck is playful'
-    },
-    upset: {
-      value: -25,
-      timeout: 10000,
-      emoji: '😔',
-      label: 'upset',
-      description: 'Duck is upset'
-    },
-    sleepy: {
-      value: -50,
-      timeout: 10000,
-      emoji: '😴',
-      label: 'sleepy',
-      description: 'Duck is sleepy'
-    },
-    dirty: {
-      value: -60,
-      timeout: 10000,
-      emoji: '💩',
-      label: 'dirty',
-      description: 'Duck is dirty'
-    }
-  }
+const MoodModsBar = ({ mods }) => {
 
   return (
     <Box
@@ -128,9 +69,13 @@ const MoodModsBar = props => {
       direction="row"
       align="end"
       justify="start">
-      {Object.values(mood_mods).map((mood_mod, index) => <MoodModButton key={index} mood_mod={mood_mod} />)}
+      {Object.values(mods).map((mod, index) => <MoodModButton key={index} mod={mod} />)}
     </Box>
   )
 }
 
-export default connect()(MoodModsBar)
+const mapStateToProps = state => ({
+  mods: state.game.mood.mods
+})
+
+export default connect(mapStateToProps)(MoodModsBar)

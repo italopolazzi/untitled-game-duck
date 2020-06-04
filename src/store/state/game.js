@@ -12,42 +12,42 @@ import {
 const baddler = Object.freeze({
   type: 'baddler',
   icon: BADDLER_ICON,
-  mods: ['pooping', 'nothing', 'eating'],
+  action_mods: ['pooping', 'nothing', 'eating'],
   times: 15000 / 1000
 })
 
 const fun = Object.freeze({
   type: 'fun',
   icon: FUN_ICON,
-  mods: ['playing'],
+  action_mods: ['playing'],
   times: 120000 / 1000
 })
 
 const hunger = Object.freeze({
   type: 'hunger',
   icon: HUNGER_ICON,
-  mods: ['eating'],
+  action_mods: ['eating'],
   times: 15000 / 1000
 })
 
 const social = Object.freeze({
   type: 'social',
   icon: SOCIAL_ICON,
-  mods: ['talking'],
+  action_mods: ['talking'],
   times: 15000 / 1000
 })
 
 const energy = Object.freeze({
   type: 'energy',
   icon: ENERGY_ICON,
-  mods: ['sleeping'],
+  action_mods: ['sleeping'],
   times: 480000 / 1000
 })
 
 const hygiene = Object.freeze({
   type: 'hygiene',
   icon: HYGIENE_ICON,
-  mods: ['bathing'],
+  action_mods: ['bathing'],
   times: 20000 / 1000
 })
 
@@ -87,7 +87,7 @@ const needs = {
   }
 }
 
-const mods = {
+const action_mods = {
   nothing: {
     fill: 'nothing',
     changes: {
@@ -167,17 +167,82 @@ const mods = {
   }
 }
 
+const mood_mods = {
+  sad: {
+    value: -10,
+    timeout: 10000,
+    emoji: '😥',
+    label: 'sad',
+    description: 'Duck is sad'
+  },
+  happy: {
+    value: 10,
+    timeout: 10000,
+    emoji: '😄',
+    label: 'happy',
+    description: 'Duck is happy'
+  },
+  proud: {
+    value: 15,
+    timeout: 10000,
+    emoji: '😊',
+    label: 'proud',
+    description: 'Duck is proud'
+  },
+  loved: {
+    value: 30,
+    timeout: 10000,
+    emoji: '🥰',
+    label: 'loved',
+    description: 'Duck is loved'
+  },
+  playful: {
+    value: 25,
+    timeout: 10000,
+    emoji: '🤪',
+    label: 'playful',
+    description: 'Duck is playful'
+  },
+  upset: {
+    value: -25,
+    timeout: 10000,
+    emoji: '😔',
+    label: 'upset',
+    description: 'Duck is upset'
+  },
+  sleepy: {
+    value: -50,
+    timeout: 10000,
+    emoji: '😴',
+    label: 'sleepy',
+    description: 'Duck is sleepy'
+  },
+  dirty: {
+    value: -60,
+    timeout: 10000,
+    emoji: '💩',
+    label: 'dirty',
+    description: 'Duck is dirty'
+  }
+}
+
+
 const state = {
-  mods: { ...mods },
-  needs: { ...needs },
+  // available
+  action_mods: { ...action_mods },
+  mood_mods: { ...mood_mods },
   commands: [...commands],
-  actions: [],
+  // game
   current_animation: null,
   current_speed: 1,
+  // character
+  needs: { ...needs },
+  actions: [],
   mood: {
     value: 10,
     label: 'unhappy',
-    modifiers: []
+    mods: {
+    }
   }
 }
 

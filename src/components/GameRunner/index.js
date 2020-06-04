@@ -8,11 +8,11 @@ import * as GameActions from '@store/actions/game'
 const updateNeeds = state => {
   const correction = 0.1
 
-  const { current_speed, mods, needs, actions } = state
+  const { current_speed, action_mods, needs, actions } = state
   const current_action = actions[0]
 
 
-  const needs_mods = current_action ? current_action.mods.map(key => mods[key]) : [mods.nothing];
+  const needs_mods = current_action ? current_action.action_mods.map(key => action_mods[key]) : [action_mods.nothing];
 
   const mods_changes = needs_mods.map(mod => {
     const { changes, fill } = mod
