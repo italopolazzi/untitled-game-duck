@@ -8,8 +8,8 @@ import GamePage from '@pages/game/index'
 import SwitchLanguageButton from '@components/SwitchLanguageButton'
 import { Grommet, Header, Nav, Anchor, Button, Text, Main } from 'grommet'
 
-import dark_theme from '../themes/dark'
-import light_theme from '../themes/light'
+import dark_theme from '@/themes/dark/index.js'
+import light_theme from '@/themes/light/index.js'
 
 const initial_theme = 'light'
 

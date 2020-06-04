@@ -1,23 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import ColorfulMeter from '@/components/ColorfulMeter/index'
+
 import './style.sass'
 
 import { Avatar, Meter, Box } from 'grommet'
 const MoodBar = ({ mood }) => {
-
-  const getMoodColor = value => {
-    if (value <= 20)
-      return 'red'
-    else if (value <= 40)
-      return 'orange'
-    else if (value <= 60)
-      return 'yellow'
-    else if (value <= 80)
-      return 'lime'
-    else
-      return 'green'
-  }
 
   const getMoodLabel = value => {
     if (value <= 20)
@@ -41,10 +30,10 @@ const MoodBar = ({ mood }) => {
       margin="small"
       title={`Duck is ${getMoodLabel(mood.value)}`}
     >
-      <Meter
+      <ColorfulMeter
         className="mood-value"
         round
-        values={[{ value: mood.value, color: getMoodColor(mood.value) }]}
+        values={[{ value: mood.value }]}
         type="circle"
         size="64px" />
       <Avatar

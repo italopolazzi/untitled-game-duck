@@ -6,6 +6,7 @@ import Icon from '@mdi/react'
 import { connect } from 'react-redux'
 
 import * as GameActions from '@store/actions/game'
+import ColorfulMeter from '@components/ColorfulMeter/index'
 
 import './style.sass'
 
@@ -31,7 +32,7 @@ const NeedsBar = ({ needs, commands, addAction }) => {
           const { value } = needs[key]
           return (
             <Box key={key} direction="row" align="center" justify="between">
-              
+
               <audio ref={audio}>
                 <source src="./public/sounds/bubble_pop.mp3" type="audio/mp3" />
               </audio>
@@ -40,12 +41,11 @@ const NeedsBar = ({ needs, commands, addAction }) => {
               <Button className="need-action" icon={<Icon path={command.icon} size={1} />} title={key} onClick={() => handleAddAction(command)} />
               <Box key={key} direction="column" align="start" justify="between">
                 <Text weight="bold">{key}</Text>
-                <Meter
+                <ColorfulMeter
                   round
                   className="need-value"
                   values={[{
                     value,
-                    color: value < 20 ? 'accent-2' : 'accent-1',
                     label: key,
                     onClick: () => { al(key, value) }
                   }]}

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import store from '../store'
 
-import theme from '@/themes/light'
+import theme from '@/themes/light/index.js'
 
 const GameLayout = () => {
 
