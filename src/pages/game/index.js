@@ -2,6 +2,7 @@ import React from 'react'
 
 import AnimationContainer from '@components/AnimationContainer'
 import MoodBar from '@components/MoodBar'
+import MoodModsBar from '@components/MoodModsBar'
 import ActionsBar from '@components/ActionsBar'
 import NeedsBar from '@components/NeedsBar'
 import TimeBar from '@components/TimeBar'
@@ -13,7 +14,7 @@ const GamePage = (props) => {
   return (
     <div className="game-page grid-component" >
 
-      <GameRunner/>
+      <GameRunner  />
 
       <div className="side-bar">
         <ActionsBar />
@@ -31,6 +32,11 @@ const GamePage = (props) => {
 
       <div className="time-bar">
         <TimeBar />
+
+      </div>
+
+      <div className="mood-mods-bar">
+        <MoodModsBar />
       </div>
 
     </div>

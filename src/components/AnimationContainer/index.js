@@ -7,7 +7,7 @@ import animations from '@/animations'
 import './style.sass'
 
 
-const AnimationContainer = ({ actions }) => {
+const AnimationContainer = ({ actions, current_speed }) => {
   const [animation, setAnimation] = useState()
 
   useEffect(() => {
@@ -34,8 +34,8 @@ const AnimationContainer = ({ actions }) => {
 
     return (
       <Lottie
-        isStopped={false}
-        isPaused={false}
+        isStopped={current_speed === 0}
+        isPaused={current_speed === 0}
         options={defaultOptions} />
     )
   }
@@ -46,7 +46,8 @@ const AnimationContainer = ({ actions }) => {
 }
 
 const mapStateToProps = state => ({
-  actions: state.game.actions
+  actions: state.game.actions,
+  current_speed: state.game.current_speed
 })
 
 export default connect(mapStateToProps)(AnimationContainer)
