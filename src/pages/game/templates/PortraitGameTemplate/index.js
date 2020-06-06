@@ -55,9 +55,22 @@ const PortraitGameTemplate = props => {
     { component: NeedsBar, title: "Needs" },
   ]
 
+  const left = <MoodBar />
+
+  const center = (
+    <ActionsBar
+      flex={{ direction: "row", justify: "end", align: "start" }}
+    />
+  )
+
+  const right = <MainMenu />
+
   return (
     <div className="portrait-game-template" >
-      <TopBar left={<MoodBar />} center={<ActionsBar />} right={<MainMenu />} />
+      <TopBar
+        left={left}
+        center={center}
+        right={right} />
 
       <MainContent>
         {<AnimationContainer />}

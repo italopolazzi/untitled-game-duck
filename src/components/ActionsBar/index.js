@@ -12,7 +12,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
 
-const ActionsBar = ({ actions, removeAction }) => {
+const ActionsBar = ({ actions, removeAction, flex }) => {
 
   const items = actions.map((action, action_index) => {
     return (
@@ -35,23 +35,28 @@ const ActionsBar = ({ actions, removeAction }) => {
   })
 
   return (
-  <>
-    <Box responsive={true} direction="column-reverse" align="end" justify="center">
-      <TransitionGroup component={null}>
-        {items}
-      </TransitionGroup>
-    </Box>
-    {/* <div class="circle">
+    <>
+      <Box
+        fill
+        responsive={true}
+        {...flex}
+      >
+        <TransitionGroup component={null}>
+          {items}
+        </TransitionGroup>
+      </Box>
+      {/* <div class="circle">
         <TransitionGroup component={null}>
           {items}
         </TransitionGroup>
       </div> */}
-  </>
+    </>
   )
 }
 
-const mapStateToProps = state => ({
-  actions: state.game.actions
+const mapStateToProps = (state, ownProps) => ({
+  actions: state.game.actions,
+  ...ownProps
 })
 
 const mapDispatchToProps = dispatch => ({
