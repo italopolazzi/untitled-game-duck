@@ -1,45 +1,25 @@
 import React from 'react'
 
-import AnimationContainer from '@components/AnimationContainer'
-import MoodBar from '@components/MoodBar'
-import MoodModsBar from '@components/MoodModsBar'
-import ActionsBar from '@components/ActionsBar'
-import NeedsBar from '@components/NeedsBar'
-import TimeBar from '@components/TimeBar'
 import GameRunner from '@components/GameRunner'
+
+import PortraitGameTemplate from './templates/PortraitGameTemplate'
+import LandscapeGameTemplate from './templates/LandscapeGameTemplate'
+
+import { useMediaQuery } from 'react-responsive'
 
 import './style.sass'
 
 const GamePage = (props) => {
+
+  const isPortrait = useMediaQuery({ orientation: 'portrait' })
+
   return (
-    <div className="game-page grid-component" >
-
-      <GameRunner  />
-
-      <div className="side-bar">
-        <ActionsBar />
-        <MoodBar />
+    <>
+      <div className="game-runner"><GameRunner /></div>
+      <div className="game-page" >
+        {isPortrait ? <PortraitGameTemplate /> : <LandscapeGameTemplate />}
       </div>
-
-
-      <div className="animation-container">
-        <AnimationContainer />
-      </div>
-
-      <div className="needs-bar">
-        <NeedsBar />
-      </div>
-
-      <div className="time-bar">
-        <TimeBar />
-
-      </div>
-
-      <div className="mood-mods-bar">
-        <MoodModsBar />
-      </div>
-
-    </div>
+    </>
   )
 }
 
