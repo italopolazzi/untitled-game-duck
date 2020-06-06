@@ -8,7 +8,7 @@ import NeedsBar from '@components/NeedsBar'
 import TimeBar from '@components/TimeBar'
 import MainMenu from '@components/MainMenu'
 
-import { Box } from 'grommet'
+import { Box, Tabs, Tab } from 'grommet'
 
 
 import './style.sass'
@@ -31,24 +31,29 @@ const MainContent = ({ children }) => {
   )
 }
 
-const FooterBar = ({ children }) => {
-  return (
-    <div className="footer-bar">
-      {children}
-    </div>
-  )
-}
-
-const BottomTabs = ({ children }) => {
+const BottomTabs = ({ tabs }) => {
   return (
     <div className="bottom-tabs">
-      {children}
+      <Tabs>
+        {tabs.map((tab, tab_index) => {
+          return (
+            <Tab key={tab_index} title={tab.title}>
+              <tab.component />
+            </Tab>
+          )
+        })}
+      </Tabs>
     </div>
   )
 }
 
 const PortraitGameTemplate = props => {
 
+  const bottom_tabs = [
+    { component: TimeBar, title: "Time" },
+    { component: MoodModsBar, title: "Mood mods" },
+    { component: NeedsBar, title: "Needs" },
+  ]
 
   return (
     <div className="portrait-game-template" >
@@ -58,14 +63,7 @@ const PortraitGameTemplate = props => {
         {<AnimationContainer />}
       </MainContent>
 
-      <FooterBar>
-        {<NeedsBar />}
-      </FooterBar>
-
-      <BottomTabs>
-        {<TimeBar />}
-        {<MoodModsBar />}
-      </BottomTabs>
+      <BottomTabs tabs={bottom_tabs} />
 
     </div>
   )

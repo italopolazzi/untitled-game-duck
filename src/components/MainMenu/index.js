@@ -59,7 +59,6 @@ const MainMenu = props => {
     <div className="main-menu" >
       <DropButton
         size="large"
-        // dropAlign={{ top: true }}
         open={drop}
         dropProps={{ elevation: false, plain: true }}
         dropContent={<DropButtonContent closeCallback={() => setDrop(false)} />} >
