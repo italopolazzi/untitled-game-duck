@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { Avatar, Box } from 'grommet'
 import ColorfulMeter from '@/components/ColorfulMeter/index'
 
 import './style.sass'
 
-import { Avatar, Meter, Box } from 'grommet'
 const MoodBar = ({ mood }) => {
 
   const getMoodLabel = value => {
