@@ -8,18 +8,49 @@ import {
   MOOD_MOD_DEFAULT_TIMEOUT
 } from '@/data/constants.js'
 
+import Store from '@/store'
+
+console.log(Store);
+
+
+export const removeGlobalMessage = (index = 0) => {
+  return {
+    type: 'REMOVE_GLOBAL_MESSAGE',
+    payload: index
+  }
+}
+
+export const addGlobalMessage = message => {
+  return {
+    type: 'ADD_GLOBAL_MESSAGE',
+    payload: message
+  }
+}
 
 export const addAction = command => {
-  return {
-    type: 'ADD_ACTION',
-    payload: {
-      ...command, // {type, icon, action_mods, duration}
-      action_mods: command.action_mods.map(key => ACTION_MODS[key]),
-      // TEMP:  command.action_mods[0]
-      fills_need: command.action_mods[0],
-      timeout: null
+  return dispatch => {
+    if (Store.getState().game.actions.length < 6) {
+      dispatch({
+        type: 'ADD_ACTION',
+        payload: {
+          ...command, // {type, icon, action_mods, duration}
+          action_mods: command.action_mods.map(key => ACTION_MODS[key]),
+          // TEMP:  command.action_mods[0]
+          fills_need: command.action_mods[0],
+          timeout: null
+        }
+      })
+    } else {
+      const timeout = setTimeout(() => {
+        console.log("Removing");
+        
+        dispatch(removeGlobalMessage(0))
+        clearTimeout(timeout)
+      }, 3000);
+      dispatch(addGlobalMessage("Actions stack is full!"))
     }
   }
+
 }
 
 export const removeAction = action_index => ({
@@ -175,7 +206,7 @@ const updateMood = (mood_mods, mood, dispatch) => {
 
   const updated_mood_mods = updateMoodMods(mood.mods)
   const new_mood_value = calcMoodValueBasedOnMoodMods(updated_mood_mods)
-  const updated_mood = { ...mood, mods: updated_mood_mods, value: new_mood_value}
+  const updated_mood = { ...mood, mods: updated_mood_mods, value: new_mood_value }
   return updated_mood
 }
 

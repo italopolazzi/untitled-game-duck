@@ -88,11 +88,9 @@ const needs = {
 }
 
 const state = {
-  // available
+  global_messages: [],
   commands: [...commands],
-  // game
   current_speed: 1,
-  // character
   needs: { ...needs },
   actions: [],
   mood: {

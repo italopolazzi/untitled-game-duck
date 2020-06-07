@@ -7,18 +7,23 @@ import {
 
 
 const cases = {
-  ADD_ACTION: (state, action) => {
-    if (state.actions.length < 6) {
-      state.actions = [...state.actions, { ...action.payload }]
-      return { ...state }
-    } else {
-      alert("Fullfied actions stack")
-      return state
-    }
+  REMOVE_GLOBAL_MESSAGE: (state, payload) => {
+    const { global_messages } = state
+    global_messages.splice(payload, 1)
+    const new_global_messages = [...global_messages]
+    return { ...state, global_messages: new_global_messages }
   },
-  REMOVE_ACTION: (state, action) => {
+  ADD_GLOBAL_MESSAGE: (state, payload) => {
+    const messages = [...state.global_messages, payload]
+    return { ...state, global_messages: messages }
+  },
+  ADD_ACTION: (state, payload) => {
+    state.actions = [...state.actions, { ...payload }]
+    return { ...state }
+  },
+  REMOVE_ACTION: (state, payload) => {
     const { actions } = state
-    const index = action.payload
+    const index = payload
     const action_to_remove = actions[index]
 
     if (index === CURRENT_ACTION_INDEX) {
@@ -35,31 +40,31 @@ const cases = {
     const new_actions = [...actions]
     return { ...state, actions: new_actions }
   },
-  SET_ACTIONS: (state, action) => {
-    return { ...state, actions: [...action.payload] }
+  SET_ACTIONS: (state, payload) => {
+    return { ...state, actions: [...payload] }
   },
-  ACTIVATE_CURRENT_ACTION: (state, action) => {
+  ACTIVATE_CURRENT_ACTION: (state, payload) => {
     const { actions } = state
-    actions[CURRENT_ACTION_INDEX] = action.payload
+    actions[CURRENT_ACTION_INDEX] = payload
     return { ...state, actions }
   },
-  SET_NEEDS: (state, action) => {
-    return { ...state, needs: { ...action.payload } }
+  SET_NEEDS: (state, payload) => {
+    return { ...state, needs: { ...payload } }
   },
-  SET_CURRENT_SPEED: (state, action) => {
-    return { ...state, current_speed: action.payload }
+  SET_CURRENT_SPEED: (state, payload) => {
+    return { ...state, current_speed: payload }
   },
-  SET_MOOD: (state, action) => {
-    return { ...state, mood: action.payload }
+  SET_MOOD: (state, payload) => {
+    return { ...state, mood: payload }
   },
-  REMOVE_MOOD_MOD: (state, action) => {
+  REMOVE_MOOD_MOD: (state, payload) => {
     const { mood } = state
-    mood.mods[action.payload] = undefined
+    mood.mods[payload] = undefined
     return { ...state, mood }
   },
-  ADD_MOOD_MOD: (state, action) => {
+  ADD_MOOD_MOD: (state, payload) => {
     const { mood } = state
-    const mood_mod = action.payload
+    const mood_mod = payload
     mood.mods[mood_mod.label] = mood_mod
     return { ...state, mood }
   }
@@ -67,7 +72,7 @@ const cases = {
 
 const reducer = (state = initialState, action) => {
   const handler = cases[action.type]
-  return handler ? handler(state, action) : state
+  return handler ? handler(state, action.payload) : state
 }
 
 export default reducer

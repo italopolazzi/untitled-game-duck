@@ -9,6 +9,8 @@ import store from '../store'
 
 import theme from '@/themes/light/index.js'
 
+import GlobalMessages from "@/components/GlobalMessages/index"
+
 const GameLayout = () => {
 
   return (
@@ -18,7 +20,7 @@ const GameLayout = () => {
 
         <div className="game-layout">
           {/* navigation */}
-
+          <GlobalMessages />
           <section id="main-content">
             <Main pad="false" background="brand" >
               <GamePage />

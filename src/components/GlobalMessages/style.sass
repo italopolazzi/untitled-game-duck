@@ -1,0 +1,21 @@
+.global-messages-container
+  position: relative
+.global-messages
+  position: fixed
+  z-index: 100
+  top: 0
+  right: 0
+
+.slidey-enter-active,
+.slidey-exit-active
+  transition: all .3s linear
+
+.slidey-enter
+  transform: translateY(-100%)
+  &.slidey-enter-active
+    transform: translateY(0)
+
+.slidey-exit
+  transform: translateY(0)
+  &.slidey-exit-active
+    transform: translateY(-100%)
