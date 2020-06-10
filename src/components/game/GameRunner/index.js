@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { Text } from 'grommet'
-import * as GameActions from '@store/actions/game'
+import * as GameActions from '@/store/actions/game'
 
 const GameRunner = ({ updateGame, game_state }) => {
 

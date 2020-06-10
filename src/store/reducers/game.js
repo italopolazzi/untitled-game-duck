@@ -1,5 +1,5 @@
 
-import initialState from '@store/state/game'
+import initialState from '@/store/state/game'
 
 import {
   CURRENT_ACTION_INDEX

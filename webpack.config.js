@@ -8,14 +8,7 @@ const config = {
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src', 'components'),
-      '@plugins': path.resolve(__dirname, 'src', 'plugins'),
-      '@pages': path.resolve(__dirname, 'src', 'pages'),
-      '@layouts': path.resolve(__dirname, 'src', 'layouts'),
-      '@themes': path.resolve(__dirname, 'src', 'themes'),
-      '@locales': path.resolve(__dirname, 'src', 'locales'),
-      '@store': path.resolve(__dirname, 'src', 'store'),
+      '@': path.resolve(__dirname, 'src')
     }
   },
   module: {
