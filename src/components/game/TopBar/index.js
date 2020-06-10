@@ -6,11 +6,14 @@ import './style.sass'
 const TopBar = ({ left, right }) => {
   return (
     <Box
-      className="top-bar"
+      id="top-bar"
       direction="row"
       align="center"
       justify="between"
-      fill="horizontal">
+      fill="horizontal"
+      gap="small"
+      pad="small"
+      >
       {left}
       {right}
     </Box>

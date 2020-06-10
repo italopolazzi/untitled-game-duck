@@ -6,7 +6,7 @@ import './style.sass'
 const BottomTabs = ({ left, right }) => {
   return (
     <Box
-      className="bottom-tabs"
+      id="bottom-tabs"
       direction="row"
       align="center"
       justify="between"

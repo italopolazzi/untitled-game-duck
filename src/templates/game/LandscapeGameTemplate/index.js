@@ -7,14 +7,17 @@ import TopBar from '@/components/game/TopBar'
 import MainContent from '@/components/game/MainContent'
 import SideBar from '@/components/game/SideBar'
 
+import MoodBar from '@/components/game/MoodBar'
+import OptionsButton from '@/components/game/OptionsButton'
+
 const LandscapeGameTemplate = props => {
 
 
   return (
-    <div className="landscape-game-template" >
+    <div id="landscape-game-template" >
       <TopBar
-        left={<p>left</p>}
-        right={<p>right</p>}
+        left={<MoodBar />}
+        right={<OptionsButton />}
       />
       <MainContent
         left={<p>left</p>}

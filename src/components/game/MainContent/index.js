@@ -6,7 +6,7 @@ import './style.sass'
 const MainContent = ({ left, right }) => {
   return (
     <Box
-      className="main-content"
+      id="main-content"
       direction="row"
       align="center"
       justify="between"

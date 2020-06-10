@@ -7,14 +7,17 @@ import TopBar from '@/components/game/TopBar'
 import MainContent from '@/components/game/MainContent'
 import BottomTabs from '@/components/game/BottomTabs'
 
+import MoodBar from '@/components/game/MoodBar'
+import OptionsButton from '@/components/game/OptionsButton'
+
 const PortraitGameTemplate = props => {
 
 
   return (
-    <div className="portrait-game-template" >
+    <div id="portrait-game-template" >
       <TopBar
-        left={<p>left</p>}
-        right={<p>right</p>}
+        left={<MoodBar />}
+        right={<OptionsButton />}
       />
       <MainContent
         left={<p>left</p>}
