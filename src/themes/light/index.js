@@ -4,11 +4,13 @@ import { grommet } from "grommet"
 import global from './global'
 import button from './button'
 import meter from './meter'
+import box from './box'
 
 const custom_theme = {
   global,
   button,
-  meter
+  meter,
+  box
 }
 
 

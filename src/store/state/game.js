@@ -93,10 +93,54 @@ const state = {
   current_speed: 1,
   needs: { ...needs },
   actions: [],
+  lifes: 2,
   mood: {
     value: 10,
     label: 'unhappy',
-    mods: {}
+    mods: {
+      sad: {
+        value: -10,
+        timeout: 10000,
+        emoji: '😥',
+        label: 'sad',
+        description: 'Duck is sad'
+      },
+      happy: {
+        value: 10,
+        timeout: 10000,
+        emoji: '😄',
+        label: 'happy',
+        description: 'Duck is happy'
+      },
+      proud: {
+        value: 15,
+        timeout: 10000,
+        emoji: '😊',
+        label: 'proud',
+        description: 'Duck is proud'
+      },
+      loved: {
+        value: 30,
+        timeout: 10000,
+        emoji: '🥰',
+        label: 'loved',
+        description: 'Duck is loved'
+      },
+      playful: {
+        value: 25,
+        timeout: 10000,
+        emoji: '🤪',
+        label: 'playful',
+        description: 'Duck is playful'
+      },
+      upset: {
+        value: -25,
+        timeout: 10000,
+        emoji: '😔',
+        label: 'upset',
+        description: 'Duck is upset'
+      }
+    }
   }
 }
 

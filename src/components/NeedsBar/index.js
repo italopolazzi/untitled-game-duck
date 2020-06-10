@@ -38,12 +38,12 @@ const NeedsBar = ({ needs, commands, addAction }) => {
               </audio>
 
               {/* <Box direction="row" ><Text weight="bold" margin={{ horizontal: 'small' }}>{key}</Text></Box> */}
-              <Button className="need-action" icon={<Icon path={command.icon} size={1} />} title={key} onClick={() => handleAddAction(command)} />
+              <Button className="need-action neuromorphic" icon={<Icon path={command.icon} size={1} />} title={key} onClick={() => handleAddAction(command)} />
               <Box key={key} direction="column" align="start" justify="between">
                 <Text weight="bold">{key}</Text>
                 <ColorfulMeter
                   round
-                  className="need-value"
+                  className="need-value neuromorphic-inset"
                   values={[{
                     value,
                     label: key,

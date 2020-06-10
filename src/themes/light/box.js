@@ -1,8 +1,7 @@
 import { neuromorphic } from '@/themes/commom/neumorphism.js'
 
-const meter = {
-  color: '#8D07F6',
+const bpx = {
   extend: neuromorphic
 }
 
-export default meter
+export default bpx

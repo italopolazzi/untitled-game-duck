@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { Avatar, Box } from 'grommet'
+import { Avatar, Box, Button } from 'grommet'
 import ColorfulMeter from '@/components/ColorfulMeter/index'
+import MoodModsBar from '@/components/MoodModsBar/index'
 
 import './style.sass'
 
@@ -23,24 +24,41 @@ const MoodBar = ({ mood }) => {
 
   const src = './public/images/duck-faces/duck-very-happy.svg'
   return (
+
+
     <Box
-      className="mood-component"
-      width="64px"
-      height="64px"
+      direction="row"
+      align="center"
+      justify="start"
+      className="neuromorphic"
+      pad="none"
       margin="small"
-      title={`Duck is ${getMoodLabel(mood.value)}`}
+      fill="horizontal"
     >
-      <ColorfulMeter
-        className="mood-value"
-        round
-        values={[{ value: mood.value }]}
-        type="circle"
-        size="64px" />
-      <Avatar
-        className="mood-avatar"
-        size="64px"
-        src={src} />
+      <Button
+        className="mood-button neuromorphic-inset"
+        margin="none"
+        title={`Duck is ${getMoodLabel(mood.value)}`}
+      >
+        <div className="button-content">
+          <Avatar
+            className="mood-avatar"
+            size="4rem"
+            src={src} />
+          <div className="mood-value">
+            <ColorfulMeter
+
+              round
+              values={[{ value: mood.value }]}
+              type="circle"
+              size="small" />
+          </div>
+        </div>
+      </Button>
+
+      <MoodModsBar />
     </Box>
+
   )
 }
 

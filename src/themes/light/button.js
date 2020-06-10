@@ -1,3 +1,5 @@
+import { neuromorphic } from '@/themes/commom/neumorphism.js'
+
 const button = {
   border: {
     width: '2px',
@@ -13,15 +15,7 @@ const button = {
     vertical: '4px',
     horizontal: '22px'
   },
-  extend: `
-        & {
-          box-shadow: 3px 3px 11px #7106c5, -3px -3px 11px #a908ff;
-          border-radius: 99999999999px;
-        }
-        &:hover {
-          box-shadow: 0 0 0 transparent;
-        }
-      `
+  extend: neuromorphic
 }
 
 export default button

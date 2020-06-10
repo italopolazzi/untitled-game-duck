@@ -10,9 +10,6 @@ import {
 
 import Store from '@/store'
 
-console.log(Store);
-
-
 export const removeGlobalMessage = (index = 0) => {
   return {
     type: 'REMOVE_GLOBAL_MESSAGE',
