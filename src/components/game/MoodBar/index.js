@@ -3,6 +3,8 @@ import { Box } from 'grommet'
 
 import './style.sass'
 
+import MoodMeter from '@/components/game/MoodMeter'
+
 const MoodBar = props => {
   return (
     <Box
@@ -14,7 +16,7 @@ const MoodBar = props => {
       height="4rem"
       overflow="hidden"
       fill="horizontal">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione explicabo animi fugiat fugit tempore incidunt rerum corporis quam, asperiores totam quidem cupiditate enim voluptatibus impedit sequi ullam quaerat aspernatur nostrum!
+      <MoodMeter />
     </Box>
   )
 }
