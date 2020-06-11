@@ -3,16 +3,16 @@ import { Box } from 'grommet'
 
 import './style.sass'
 
-const MainContent = ({ left, right }) => {
+const MainContent = ({ top, bottom }) => {
   return (
     <Box
       id="main-content"
-      direction="row"
+      direction="column"
       align="center"
       justify="between"
-      fill="horizontal">
-      {left}
-      {right}
+      fill>
+      {top}
+      {bottom}
     </Box>
   )
 }

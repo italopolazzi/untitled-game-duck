@@ -10,6 +10,9 @@ import BottomTabs from '@/components/game/BottomTabs'
 import MoodBar from '@/components/game/MoodBar'
 import OptionsButton from '@/components/game/OptionsButton'
 
+import AnimationContainer from '@/components/game/AnimationContainer'
+import ActionsBar from '@/components/game/ActionsBar'
+
 const PortraitGameTemplate = props => {
 
 
@@ -20,8 +23,8 @@ const PortraitGameTemplate = props => {
         right={<OptionsButton />}
       />
       <MainContent
-        left={<p>left</p>}
-        right={<p>right</p>}
+        top={<AnimationContainer />}
+        bottom={<ActionsBar />}
       />
       <BottomTabs
         left={<p>left</p>}
