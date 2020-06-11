@@ -3,7 +3,7 @@ import { Box } from 'grommet'
 
 import './style.sass'
 
-const SideBar = ({ left, right }) => {
+const SideBar = ({ components }) => {
   return (
     <Box
       id="side-bar"
@@ -11,8 +11,11 @@ const SideBar = ({ left, right }) => {
       align="center"
       justify="between"
       fill="horizontal">
-      {left}
-      {right}
+      {components.map((item, index) => {
+        return (
+          <item.component key={index} />
+        )
+      })}
     </Box>
   )
 }

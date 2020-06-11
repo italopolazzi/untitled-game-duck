@@ -62,26 +62,32 @@ const commands = [
 
 const needs = {
   baddler: {
+    title: "baddler",
     icon: BADDLER_ICON,
     value: 90,
   },
   fun: {
+    title: "fun",
     icon: FUN_ICON,
     value: 90,
   },
   hunger: {
+    title: "hunger",
     icon: HUNGER_ICON,
     value: 90,
   },
   social: {
+    title: "social",
     icon: SOCIAL_ICON,
     value: 50,
   },
   energy: {
+    title: "energy",
     icon: ENERGY_ICON,
     value: 10,
   },
   hygiene: {
+    title: "hygiene",
     icon: HYGIENE_ICON,
     value: 10,
   }

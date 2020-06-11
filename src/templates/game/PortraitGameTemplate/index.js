@@ -13,6 +13,8 @@ import OptionsButton from '@/components/game/OptionsButton'
 import AnimationContainer from '@/components/game/AnimationContainer'
 import ActionsBar from '@/components/game/ActionsBar'
 
+import NeedsBar from '@/components/game/NeedsBar'
+
 const PortraitGameTemplate = props => {
 
 
@@ -27,8 +29,9 @@ const PortraitGameTemplate = props => {
         bottom={<ActionsBar />}
       />
       <BottomTabs
-        left={<p>left</p>}
-        right={<p>right</p>}
+        components={[
+          { title: 'NeedsBar', component: NeedsBar }
+        ]}
       />
 
     </div>

@@ -3,7 +3,7 @@ import { Box } from 'grommet'
 
 import './style.sass'
 
-const BottomTabs = ({ left, right }) => {
+const BottomTabs = ({ components }) => {
   return (
     <Box
       id="bottom-tabs"
@@ -11,8 +11,11 @@ const BottomTabs = ({ left, right }) => {
       align="center"
       justify="between"
       fill="horizontal">
-      {left}
-      {right}
+      {components.map((item, index) => {
+        return (
+          <item.component key={index} />
+        )
+      })}
     </Box>
   )
 }

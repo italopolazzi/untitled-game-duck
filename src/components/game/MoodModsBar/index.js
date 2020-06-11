@@ -6,8 +6,6 @@ import './style.sass'
 import Emoji from '@/components/Emoji'
 
 const MoodMod = ({ mod }) => {
-  console.log(mod);
-
   const box = {
     style: {
       width: '2em',

@@ -13,6 +13,8 @@ import OptionsButton from '@/components/game/OptionsButton'
 import AnimationContainer from '@/components/game/AnimationContainer'
 import ActionsBar from '@/components/game/ActionsBar'
 
+import NeedsBar from '@/components/game/NeedsBar'
+
 const LandscapeGameTemplate = props => {
 
 
@@ -27,8 +29,9 @@ const LandscapeGameTemplate = props => {
         bottom={<ActionsBar />}
       />
       <SideBar
-        left={<p>left</p>}
-        right={<p>right</p>}
+        components={[
+          { title: 'NeedsBar', component: NeedsBar }
+        ]}
       />
 
     </div>

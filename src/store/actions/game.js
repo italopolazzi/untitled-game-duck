@@ -38,9 +38,7 @@ export const addAction = command => {
         }
       })
     } else {
-      const timeout = setTimeout(() => {
-        console.log("Removing");
-        
+      const timeout = setTimeout(() => {        
         dispatch(removeGlobalMessage(0))
         clearTimeout(timeout)
       }, 3000);
