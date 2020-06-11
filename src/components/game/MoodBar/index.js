@@ -4,6 +4,7 @@ import { Box } from 'grommet'
 import './style.sass'
 
 import MoodMeter from '@/components/game/MoodMeter'
+import MoodModsBar from '@/components/game/MoodModsBar'
 
 const MoodBar = props => {
   return (
@@ -15,8 +16,9 @@ const MoodBar = props => {
       justify="start"
       height="4rem"
       overflow="hidden"
-      fill="horizontal">
+      >
       <MoodMeter />
+      <MoodModsBar />
     </Box>
   )
 }

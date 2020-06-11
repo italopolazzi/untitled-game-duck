@@ -1,7 +1,8 @@
 import React from 'react'
 
 const Emoji = props => {
-  const { label, symbol } = props  
+  const { label, symbol} = props
+
   return (
     <span
       role="img"
