@@ -14,6 +14,7 @@ import AnimationContainer from '@/components/game/AnimationContainer'
 import ActionsBar from '@/components/game/ActionsBar'
 
 import NeedsBar from '@/components/game/NeedsBar'
+import TimeBar from '@/components/game/TimeBar'
 
 const PortraitGameTemplate = props => {
 
@@ -30,7 +31,8 @@ const PortraitGameTemplate = props => {
       />
       <BottomTabs
         components={[
-          { title: 'NeedsBar', component: NeedsBar }
+          { title: 'TimeBar', component: TimeBar },
+          { title: 'NeedsBar', component: NeedsBar },
         ]}
       />
 

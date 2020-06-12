@@ -7,13 +7,20 @@ const SideBar = ({ components }) => {
   return (
     <Box
       id="side-bar"
-      direction="row"
+      direction="column"
       align="center"
-      justify="between"
+      justify="end"
       fill="horizontal">
       {components.map((item, index) => {
         return (
-          <item.component key={index} />
+          <Box
+            key={index}
+            className="neuromorphic"
+            pad="medium"
+            margin={{bottom: "small" }}
+          >
+            <item.component className="" />
+          </Box>
         )
       })}
     </Box>

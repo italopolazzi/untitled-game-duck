@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from 'grommet'
+import { Box, Tabs, Tab } from 'grommet'
 
 import './style.sass'
 
@@ -7,15 +7,29 @@ const BottomTabs = ({ components }) => {
   return (
     <Box
       id="bottom-tabs"
-      direction="row"
+      direction="column"
       align="center"
-      justify="between"
-      fill="horizontal">
-      {components.map((item, index) => {
-        return (
-          <item.component key={index} />
-        )
-      })}
+      justify="start"
+      fill="horizontal"
+      height="medium"
+      className="neuromorphic"
+    >
+      <Tabs  justify="start" style={{ width: '100%' }}>
+        {components.map((tab, index) => {
+          return (
+            <Tab margin="small" key={index} title={tab.title}>
+              <Box
+                pad="large"
+                margin={{ bottom: "small" }}
+                fill
+              >
+                <tab.component />
+              </Box>
+            </Tab>
+          )
+        })}
+
+      </Tabs>
     </Box>
   )
 }
