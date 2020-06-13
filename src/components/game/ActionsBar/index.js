@@ -6,6 +6,7 @@ import Icon from '@mdi/react'
 
 import "./style.sass"
 
+import { removeAction as REMOVE_ACTION } from '@/store/actions/game'
 
 const useInterval = (callback, delay) => {
   const saved_callback = useRef();
@@ -25,42 +26,48 @@ const useInterval = (callback, delay) => {
 
 const CurrentAction = ({ action }) => {
   const millisseconds = 1000
-  if (action) {
-    const [value, setValue] = useState(100)
-    const [count, setCount] = useState(1)
+  const [value, setValue] = useState(100)
+  const [count, setCount] = useState(1)
 
-    useInterval(() => {
-      const { duration } = action
-      const res = 100 - (100 * (count * millisseconds / duration))
-      setValue(res)
-      setCount(count + 1)
-    }, millisseconds)
+  useInterval(() => {
+    const { duration } = action
+    const res = 100 - (100 * (count * millisseconds / duration))
+    setValue(res)
+    setCount(count + 1)
+  }, millisseconds)
 
-    return (
-      <Box
-        direction="column"
-        align="center"
-        justify="center"
-        id="current-action"
-        width="3rem"
-        height="3rem"
-      >
-        <Button
-          style={{ background: 'var(--brand)' }}
-          className="neuromorphic"
-          icon={<Icon path={action.icon}
-            size={1} />}
-        />
-        <Meter id="actions-timer" round type="circle" values={[{ value, color: "accent-2" }]} />
-      </Box>
-    )
-  }
+  return (
+    <Box
+      direction="column"
+      align="center"
+      justify="center"
+      id="current-action"
+      width="3rem"
+      height="3rem"
+    >
+      <Button
+        style={{ background: 'var(--brand)' }}
+        className="neuromorphic"
+        icon={<Icon
+          path={action.icon}
+          size={1} />}
+      />
+      <Meter
+        id="actions-timer"
+        round
+        type="circle"
+        values={[{
+          value,
+          color: "accent-2"
+        }]}
+      />
+    </Box>
+  )
 }
 
 
 
-const ActionsBar = ({ actions }) => {
-  const current_action = actions[0]
+const ActionsBar = ({ actions, removeAction }) => {
   return (
     <Box
       id="actions-bar"
@@ -69,12 +76,19 @@ const ActionsBar = ({ actions }) => {
       align="center"
       gap="medium"
     >
-      {current_action && <CurrentAction action={current_action} />}
       {
-        actions.slice(1, actions.length).map((action, index) => {
+        actions.map((action, index) => {
+          if (index === 0) {
+            return (
+              <Box onClick={() => removeAction(index)}>
+                <CurrentAction action={action} />
+              </Box>
+            )
+          }
           return (
             <Button
               key={index}
+              onClick={() => removeAction(index)}
               style={{ background: 'var(--brand)' }}
               className="neuromorphic"
               icon={<Icon path={action.icon}
@@ -91,4 +105,8 @@ const mapStateToProps = state => ({
   actions: state.game.actions
 })
 
-export default connect(mapStateToProps)(ActionsBar)
+const mapDispatchToProps = dispatch => ({
+  removeAction: index => dispatch(REMOVE_ACTION(index))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActionsBar)
