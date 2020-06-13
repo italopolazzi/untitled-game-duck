@@ -20,7 +20,7 @@ const LandscapeGameTemplate = props => {
 
 
   return (
-    <div id="landscape-game-template" >
+    <Box id="landscape-game-template" fill >
       <TopBar
         left={<MoodBar />}
         right={<OptionsButton />}
@@ -36,7 +36,7 @@ const LandscapeGameTemplate = props => {
         ]}
       />
 
-    </div>
+    </Box>
   )
 }
 

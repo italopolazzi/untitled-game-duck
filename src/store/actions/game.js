@@ -42,7 +42,7 @@ export const addAction = command => {
         dispatch(removeGlobalMessage(0))
         clearTimeout(timeout)
       }, 3000);
-      dispatch(addGlobalMessage("Actions stack is full!"))
+      dispatch(addGlobalMessage("Actions queue is full!"))
     }
   }
 

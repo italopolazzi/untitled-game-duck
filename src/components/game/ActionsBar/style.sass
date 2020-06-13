@@ -1,0 +1,21 @@
+#current-action
+  position: relative
+#current-action > *
+  position: absolute
+
+#actions-bar
+  position: relative
+div#actions-bar > button
+  z-index: 1
+
+div#actions-bar:before
+  content: ""
+  background: var(--accent-2)
+  height: 0.5rem
+  width: 100%
+  display: block
+  z-index: 0
+  position: absolute
+
+#actions-timer
+  transform: rotate(90deg)
