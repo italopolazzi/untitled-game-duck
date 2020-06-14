@@ -2,8 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Lottie from 'react-lottie'
+import { Box } from 'grommet'
 
-import * as animations from '@/animations'
+import * as animations from '@/animations/index'
+
+console.log(animations);
+
 
 const AnimationContainer = ({ current_action }) => {
 
@@ -20,13 +24,20 @@ const AnimationContainer = ({ current_action }) => {
         // progressiveLoad: true
       }
     }
+    
+    console.log(lottie_options);
+    
 
+
+    
     return (
-      <Lottie
-        options={lottie_options}
-        isPaused={false}
-        isStopped={false}
-      />
+      <Box fill>
+        <Lottie
+          options={lottie_options}
+          isPaused={false}
+          isStopped={false}
+        />
+      </Box>
     )
   } else {
     return <p>No Animation</p>

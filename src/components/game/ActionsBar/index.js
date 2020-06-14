@@ -80,7 +80,7 @@ const ActionsBar = ({ actions, removeAction }) => {
         actions.map((action, index) => {
           if (index === 0) {
             return (
-              <Box onClick={() => removeAction(index)}>
+              <Box key={index} onClick={() => removeAction(index)}>
                 <CurrentAction action={action} />
               </Box>
             )
