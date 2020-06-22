@@ -40,7 +40,7 @@ const MoodMod = ({ mod }) => {
 const MoodModsBar = ({ mods }) => {
 
   const values = Object.values(mods)
-  const length = values.length
+
   return (
     <Box
       wrap={false}

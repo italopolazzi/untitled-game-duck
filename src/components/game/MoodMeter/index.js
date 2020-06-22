@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Image } from 'grommet'
+import { Box, Button, Image, DropButton } from 'grommet'
 
 import { connect } from 'react-redux'
 
@@ -8,10 +8,12 @@ import './style.sass'
 
 import ColorfulMeter from '@/components/ColorfulMeter'
 
-const MoodMeter = ({ mood }) => {
+const MoodMeter = ({ mood, ownProps }) => {
   return (
-    <Button
+    <DropButton
+    
       className="neuromorphic-inset"
+      {...ownProps}
       style={{ padding: 0 }}
       icon={
         <Box
@@ -43,8 +45,9 @@ const MoodMeter = ({ mood }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  mood: state.game.mood
+const mapStateToProps = (state, ownProps) => ({
+  mood: state.game.mood,
+  ownProps
 })
 
 export default connect(mapStateToProps)(MoodMeter)
