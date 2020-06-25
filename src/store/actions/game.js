@@ -10,6 +10,16 @@ import {
 
 import Store from '@/store'
 
+
+export const setName = name => ({
+  type: 'SET_NAME',
+  payload: name
+})
+export const setPersonality = personality => ({
+  type: 'SET_PERSONALITY',
+  payload: personality
+})
+
 export const removeGlobalMessage = (index = 0) => {
   return {
     type: 'REMOVE_GLOBAL_MESSAGE',

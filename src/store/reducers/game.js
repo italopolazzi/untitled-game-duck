@@ -7,6 +7,12 @@ import {
 
 
 const cases = {
+  SET_NAME: (state, payload) => {
+    return { ...state, name: payload }
+  },
+  SET_PERSONALITY: (state, payload) => {
+    return { ...state, personality: payload }
+  },
   REMOVE_GLOBAL_MESSAGE: (state, payload) => {
     const { global_messages } = state
     global_messages.splice(payload, 1)

@@ -3,10 +3,7 @@ import ReactDom from 'react-dom'
 import '@/plugins/i18n'
 
 import './styles/index.sass'
-// import GamePage from '@/pages/game'
-import StartGamePage from '@/pages/start-game'
-
+import Pages from '@/pages'
 
 const wrapper = document.querySelector("#app")
-// wrapper ? ReactDom.render(<GamePage />, wrapper) : false
-wrapper ? ReactDom.render(<StartGamePage />, wrapper) : false
+wrapper ? ReactDom.render(<Pages />, wrapper) : false

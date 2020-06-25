@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Tabs, Tab, Button, RangeInput, FormField, TextInput } from 'grommet'
+import { Box, Text, Button, FormField, TextInput } from 'grommet'
+import { useHistory } from "react-router-dom"
 
-import Icon from '@mdi/react'
-import { mdiPlus, mdiMinus } from '@mdi/js'
 
 import { connect } from 'react-redux'
 
@@ -10,12 +9,35 @@ import './style.sass'
 
 import PersonalitySelector from '@/components/start-game/PersonalitySelector'
 
-import { updateStartGame as UPDATE_START_GAME } from '@/store/actions/start_game'
+import { updateStartGame as UPDATE_START_GAME, preAddGameConfig as PRE_ADD_START_GAME_CONFIG } from '@/store/actions/start_game'
 
-const LandscapeGameTemplate = ({ name_initial, personality_initial, updateStartGame }) => {
+const LandscapeGameTemplate = ({ name_initial, personality_initial, updateStartGame, preAddGameConfig }) => {
 
   const [name, setName] = useState(name_initial)
   const [personality, setPersonality] = useState(personality_initial)
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
+
+  useEffect(() => {
+    updateStartGame({
+      personality,
+      name
+    })
+  }, [personality, name])
+
+  const startGame = () => {
+    setLoading(true)
+
+    const timeout = setTimeout(() => {
+      setLoading(false)
+      preAddGameConfig({
+        personality,
+        name
+      })
+      history.push("/game")
+      clearTimeout(timeout)
+    }, 5000);
+  }
 
   return (
     <Box
@@ -33,12 +55,8 @@ const LandscapeGameTemplate = ({ name_initial, personality_initial, updateStartG
       </FormField>
       <Button
         label="Set data"
-        onClick={() => updateStartGame({
-          personality,
-          name
-        })} />
-
-
+        onClick={async () => startGame()} />
+      {loading ? <Text weight="bold">Loading...</Text> : null}
     </Box>
   )
 }
@@ -50,10 +68,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateStartGame: updated_state => {
-    console.log(updated_state);
     dispatch(UPDATE_START_GAME(updated_state))
-    
-  }
+  },
+  preAddGameConfig: config => dispatch(PRE_ADD_START_GAME_CONFIG(config))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandscapeGameTemplate)

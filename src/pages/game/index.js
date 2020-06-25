@@ -1,8 +1,5 @@
 import React from 'react'
-import { Grommet, Main } from 'grommet'
-import { Provider } from 'react-redux'
-import store from '@/store'
-import theme from '@/themes/light/index.js'
+import { Main } from 'grommet'
 import GlobalMessages from "@/components/GlobalMessages/index"
 
 
@@ -27,20 +24,15 @@ const Game = (props) => {
 
 const GamePage = () => {
   return (
-    <Provider store={store}>
-      <Grommet theme={theme} full cssVars={true}>
-        <div id="game-container">
-          {/* navigation */}
-          <GlobalMessages />
-          <section id="game">
-            <Main pad="false" background="brand" >
-              <Game />
-            </Main>
-          </section>
-        </div>
-
-      </Grommet >
-    </Provider>
+    <div id="game-container">
+      {/* navigation */}
+      <GlobalMessages />
+      <section id="game">
+        <Main pad="false" background="brand" >
+          <Game />
+        </Main>
+      </section>
+    </div>
   )
 }
 

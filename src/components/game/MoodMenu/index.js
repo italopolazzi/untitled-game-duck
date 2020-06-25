@@ -49,13 +49,12 @@ const MoodMenu = ({ meter, mood_mods }) => {
                 {mood_mod.label}
                 <Emoji symbol={mood_mod.emoji} size={1} />
               </Box>
-         )
-        })
             </Box>
-
-)
-</Box>
-</Box>
+          )
+        })}
+      </Box>
+    </Box>
+  )
 }
 
 const mapStateToProps = (state, ownProps) => ({
