@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Stack } from 'grommet'
+import { Box, Text, Stack } from 'grommet'
 import { connect } from 'react-redux'
 import './style.sass'
 
@@ -28,16 +28,7 @@ const MoodMod = ({ mod }) => {
   )
 }
 
-// const MoodMods = ({ mods }) => {
-
-//   return (
-//     <>
-
-//     </>
-//   )
-// }
-
-const MoodModsBar = ({ mods }) => {
+const MoodModsBar = ({ mods, lifes }) => {
 
   const values = Object.values(mods)
 
@@ -58,10 +49,10 @@ const MoodModsBar = ({ mods }) => {
             emoji: "💖"
           }}
         />
-        <span>2</span>
+        <Text weight="bold">{lifes}</Text>
       </Stack>
       {
-        values.map((mod, index) => {
+        values.filter(v => !!v).map((mod, index) => {
         return <MoodMod
           key={index}
           mod={mod}
@@ -73,7 +64,8 @@ const MoodModsBar = ({ mods }) => {
 }
 
 const mapStateToProps = state => ({
-  mods: state.game.mood.mods
+  mods: state.game.mood.mods,
+  lifes: state.game.lifes
 })
 
 export default connect(mapStateToProps)(MoodModsBar)

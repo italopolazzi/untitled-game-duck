@@ -11,7 +11,6 @@ import ColorfulMeter from '@/components/ColorfulMeter'
 const MoodMeter = ({ mood, ownProps }) => {
   return (
     <DropButton
-    
       className="neuromorphic-inset"
       {...ownProps}
       style={{ padding: 0 }}

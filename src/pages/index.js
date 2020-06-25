@@ -16,7 +16,7 @@ const Pages = () => {
           <BrowserRouter>
             <Switch>
               <Route path="/" exact >
-                <Link to="/start-game" >
+                <Link to="/game" >
                 <Button label="Start game"  />
                 </Link>
               </Route>

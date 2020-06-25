@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Box, DropButton } from 'grommet'
+import { Box, Button } from 'grommet'
 
 import './style.sass'
 
 import MoodMenu from '@/components/game/MoodMenu'
 import MoodMeter from '@/components/game/MoodMeter'
 import MoodModsBar from '@/components/game/MoodModsBar'
+
+import Icon from '@mdi/react'
+import { mdiArrowLeft } from '@mdi/js'
 
 const MoodBar = props => {
   const [open, setOpen] = useState(true)
@@ -25,16 +28,22 @@ const MoodBar = props => {
           open={open}
           dropAlign={{ top: 'bottom', right: 'right' }}
           onClick={() => setOpen(true)}
-          dropProps={{ 
-            elevation: false, 
+          dropAlign={{ top: 'bottom', left: 'left' }}
+          dropProps={{
+            elevation: 'medium',
             // plain: true, 
-            plain: false, 
+            plain: false,
             onEsc: () => setOpen(false)
           }}
           dropContent={
-            <MoodMenu meter={
-              <MoodMeter onClick={() => setOpen(false)} />
-            } />
+            <MoodMenu
+              closeButton={<Button
+                className="neuromorphic"
+                onClick={() => setOpen(false)}
+                icon={<Icon path={mdiArrowLeft} size={1} />} />}
+              meter={
+                <MoodMeter />
+              } />
           } />
 
         <MoodModsBar />
