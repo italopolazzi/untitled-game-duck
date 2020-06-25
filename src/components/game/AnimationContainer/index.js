@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Lottie from 'react-lottie'
-import { Box } from 'grommet'
+import { Box, Button } from 'grommet'
 
 import * as animations from '@/animations/index'
 
@@ -24,19 +24,24 @@ const AnimationContainer = ({ current_action }) => {
         // progressiveLoad: true
       }
     }
-    
+
     console.log(lottie_options);
-    
 
 
-    
+
+
     return (
       <Box fill>
-        <Lottie
-          options={lottie_options}
-          isPaused={false}
-          isStopped={false}
-        />
+        <Button data-sound="quack" >
+          <Lottie
+
+            options={lottie_options}
+            isPaused={false}
+            
+            isStopped={false}
+            
+          />
+        </Button>
       </Box>
     )
   } else {

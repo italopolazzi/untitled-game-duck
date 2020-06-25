@@ -48,6 +48,7 @@ const CurrentAction = ({ action }) => {
       <Button
         style={{ background: 'var(--brand)' }}
         className="neuromorphic"
+        data-sound="out"
         icon={<Icon
           path={action.icon}
           size={1} />}
@@ -91,6 +92,7 @@ const ActionsBar = ({ actions, removeAction }) => {
               onClick={() => removeAction(index)}
               style={{ background: 'var(--brand)' }}
               className="neuromorphic"
+              data-sound="out"
               icon={<Icon path={action.icon}
                 size={1} />}
             />

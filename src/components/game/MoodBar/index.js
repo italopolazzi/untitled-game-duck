@@ -39,6 +39,7 @@ const MoodBar = props => {
             <MoodMenu
               closeButton={<Button
                 className="neuromorphic"
+                data-sound="out"
                 onClick={() => setOpen(false)}
                 icon={<Icon path={mdiArrowLeft} size={1} />} />}
               meter={

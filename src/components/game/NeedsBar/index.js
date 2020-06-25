@@ -10,6 +10,7 @@ import ColorfulMeter from '@/components/ColorfulMeter'
 import { addAction as ADD_ACTION } from '@/store/actions/game'
 
 const NeedItem = ({ need, callback }) => {
+
   return (
     <Box
       direction="row"
@@ -20,7 +21,7 @@ const NeedItem = ({ need, callback }) => {
     >
       <Button
         className="neuromorphic"
-        onClick={callback}
+        onClick={() => callback()}
         icon={
           <Icon path={need.icon}
             size={1} />

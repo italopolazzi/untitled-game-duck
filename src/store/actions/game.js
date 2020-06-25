@@ -9,7 +9,7 @@ import {
 } from '@/data/constants.js'
 
 import Store from '@/store'
-
+import { playNotification } from '@/components/game/GameSounds'
 
 export const setName = name => ({
   type: 'SET_NAME',
@@ -48,11 +48,12 @@ export const addAction = command => {
         }
       })
     } else {
-      const timeout = setTimeout(() => {        
+      const timeout = setTimeout(() => {
         dispatch(removeGlobalMessage(0))
         clearTimeout(timeout)
       }, 3000);
       dispatch(addGlobalMessage("Actions queue is full!"))
+      playNotification()
     }
   }
 

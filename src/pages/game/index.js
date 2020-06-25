@@ -4,6 +4,7 @@ import GlobalMessages from "@/components/GlobalMessages/index"
 
 
 import GameRunner from '@/components/game/GameRunner'
+import GameSounds from '@/components/game/GameSounds'
 import PortraitGameTemplate from '@/templates/game/PortraitGameTemplate'
 import LandscapeGameTemplate from '@/templates/game/LandscapeGameTemplate'
 import { useMediaQuery } from 'react-responsive'
@@ -15,6 +16,7 @@ const Game = (props) => {
   return (
     <>
       <div id="game-runner"><GameRunner /></div>
+      <div id="game-sounds"><GameSounds /></div>
       <div id="game-template" >
         {isPortrait ? <PortraitGameTemplate /> : <LandscapeGameTemplate />}
       </div>
