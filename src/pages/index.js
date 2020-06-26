@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 import StartGamePage from '@/pages/start-game'
 import GamePage from '@/pages/game'
+import HomePage from '@/pages/home'
 
 const Pages = () => {
   return (
@@ -15,11 +16,7 @@ const Pages = () => {
         <div id="pages">
           <BrowserRouter>
             <Switch>
-              <Route path="/" exact >
-                <Link to="/game" >
-                <Button label="Start game"  />
-                </Link>
-              </Route>
+              <Route component={HomePage} path="/" exact />
               <Route component={StartGamePage} path="/start-game" />
               <Route component={GamePage} path="/game" />
             </Switch>
