@@ -27,7 +27,6 @@ const GameSounds = props => {
   const handleClick = event => {
     const { target } = event
     const element = target.closest("button")
-
     if (element.tagName === "BUTTON") {
       const { sound } = element.dataset
       switch (sound) {
@@ -44,7 +43,6 @@ const GameSounds = props => {
           playBubblePopIn()
           break;
       }
-
     }
   }
 

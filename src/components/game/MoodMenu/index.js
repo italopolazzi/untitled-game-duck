@@ -7,9 +7,6 @@ import Emoji from '@/components/Emoji'
 
 import "./style.sass"
 
-import { useMediaQuery } from 'react-responsive'
-
-
 const MoodMenu = ({ closeButton, meter, mood_mods, lifes }) => {
   // const cols = useMediaQuery({ orientation: 'portrait' }) ? 6 : 3
   return (
