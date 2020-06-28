@@ -8,7 +8,25 @@ import { mdiNumeric1, mdiNumeric2, mdiNumeric3, mdiPause, mdiWeatherSunny } from
 
 import { setCurrentSpeed as SET_CURRENT_SPEED } from '@/store/actions/game'
 
+const DateNowString = date => {
+  return new Date(date).toISOString()
+}
+
 const TimeBar = ({ setCurrentSpeed, current_speed }) => {
+  const [date, setDate] = useState(Date.now())
+  console.log(date);
+
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+      setDate(date + (60000 * current_speed))
+      console.log(date);
+
+    }, 1000);
+    return () => clearInterval(interval)
+  })
+
+
 
   return (
     <Box
@@ -25,7 +43,7 @@ const TimeBar = ({ setCurrentSpeed, current_speed }) => {
         direction="column"
         justify="center"
         align="center"
-      
+
         style={{
           width: `${100 * 4 / 12}%`
         }}
@@ -45,22 +63,25 @@ const TimeBar = ({ setCurrentSpeed, current_speed }) => {
           width: `${100 * 8 / 12}%`
         }}
         fill
+        gap="medium"
       >
         <Box
           direction="row"
           justify="center"
           align="center"
-          fill
+          pad="medium"
+
           className="neuromorphic-inset"
           round
         >
 
-          <Clock type="digital" precision="minutes" time={new Date(Date.now()).toISOString()} />
+          <Clock type="digital" precision="minutes" time={DateNowString(date)} />
         </Box>
         <Box
           direction="row"
           justify="center"
           align="center"
+          gap="small"
           style={{
             width: `${100 * 8 / 12}%`
           }}
@@ -68,18 +89,22 @@ const TimeBar = ({ setCurrentSpeed, current_speed }) => {
         >
 
           <Button
+            className="neuromorphic"
             icon={<Icon path={mdiPause} size={1} />}
             onClick={() => setCurrentSpeed(0)}
           />
           <Button
+            className="neuromorphic"
             icon={<Icon path={mdiNumeric1} size={1} />}
             onClick={() => setCurrentSpeed(1)}
           />
           <Button
+            className="neuromorphic"
             icon={<Icon path={mdiNumeric2} size={1} />}
             onClick={() => setCurrentSpeed(2)}
           />
           <Button
+            className="neuromorphic"
             icon={<Icon path={mdiNumeric3} size={1} />}
             onClick={() => setCurrentSpeed(3)}
           />

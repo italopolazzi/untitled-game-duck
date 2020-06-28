@@ -18,6 +18,7 @@ const NeedItem = ({ need, callback }) => {
       align="start"
       basis="1/2"
       gap="small"
+      pad="small"
     >
       <Button
         className="neuromorphic"
@@ -27,7 +28,7 @@ const NeedItem = ({ need, callback }) => {
             size={1} />
         }
       />
-      <Box direction="column" justify="center" align="start">
+      <Box direction="column" justify="center" align="start" gap="small">
         <Text weight="bold">{need.title}</Text>
         <ColorfulMeter
           round
