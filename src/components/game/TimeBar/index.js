@@ -14,13 +14,13 @@ const DateNowString = date => {
 
 const TimeBar = ({ setCurrentSpeed, current_speed }) => {
   const [date, setDate] = useState(Date.now())
-  console.log(date);
+
 
   useEffect(() => {
 
     const interval = setInterval(() => {
       setDate(date + (60000 * current_speed))
-      console.log(date);
+    
 
     }, 1000);
     return () => clearInterval(interval)

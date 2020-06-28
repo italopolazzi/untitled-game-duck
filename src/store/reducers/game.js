@@ -73,6 +73,22 @@ const cases = {
     const mood_mod = payload
     mood.mods[mood_mod.label] = mood_mod
     return { ...state, mood }
+  },
+  DECREMENT_LIFES: state => {
+    const { mood, needs } = state
+
+    mood.value = 100
+    mood.label = 'normal'
+    mood.mods = {}
+
+    Object.keys(needs).forEach(key => {
+      needs[key].value = 100
+    });
+
+    return { ...state, lifes: state.lifes - 1, needs, mood }
+  },
+  KILL_DUCK: state => {
+    return { state, status: 'DEAD' }
   }
 }
 

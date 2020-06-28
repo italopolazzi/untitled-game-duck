@@ -25,7 +25,7 @@ const MoodMenu = ({ closeButton, meter, mood_mods, lifes }) => {
           <Box direction="row" justify="between" align="center" gap="small" fill="horizontal">
             <Text weight="bold" color="neutral-2" size="large">Healthy</Text>
             <Box direction="row" align="center" justify="center">
-              {[...Array(3)].map((life, index) => <Emoji key={index} symbol={index + 1 < lifes ? "💔" : "💖"} size={1} />)}
+              {[...Array(3)].map((life, index) => <Emoji key={index} symbol={index + 1 > lifes ? "💔" : "💖"} size={1} />)}
             </Box>
           </Box>
           <Box direction="row" justify="between" align="end" gap="small">

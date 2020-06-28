@@ -99,7 +99,8 @@ const state = {
   current_speed: 1,
   needs: { ...needs },
   actions: [],
-  lifes: 2,
+  lifes: 3,
+  status: 'ALIVE',
   mood: {
     value: 10,
     label: 'unhappy',

@@ -98,6 +98,12 @@ export const activateCurrentAction = action => ({
   type: 'ACTIVATE_CURRENT_ACTION',
   payload: action
 })
+export const decrementLifes = () => ({
+  type: 'DECREMENT_LIFES'
+})
+export const killDuck = () => ({
+  type: 'KILL_DUCK'
+})
 
 const getCurrentAction = (state, dispatch) => {
   const current_action = state.actions[CURRENT_ACTION_INDEX]
@@ -236,16 +242,25 @@ const removeCurrentActionIfFullfied = (current_action, border_keys, dispatch) =>
 export const updateGame = state => {
   return dispatch => {
 
-    const current_action = getCurrentAction(state, dispatch)
-    const updated_needs = updateNeeds(state, current_action)
+    if (state.lifes === 0) {
+      dispatch(killDuck())
+    } else {
+      const current_action = getCurrentAction(state, dispatch)
+      const updated_needs = updateNeeds(state, current_action)
 
-    const border_keys = getBorderNeedsKeys(updated_needs)
-    removeCurrentActionIfFullfied(current_action, border_keys, dispatch)
+      const border_keys = getBorderNeedsKeys(updated_needs)
+      removeCurrentActionIfFullfied(current_action, border_keys, dispatch)
 
-    const mood_mods = getMoodMods(border_keys)
-    const updated_mood = updateMood(mood_mods, state.mood, dispatch)
+      const mood_mods = getMoodMods(border_keys)
+      const updated_mood = updateMood(mood_mods, state.mood, dispatch)
 
-    dispatch(setNeeds(updated_needs))
-    dispatch(setMood(updated_mood))
+      if (updated_mood.value <= 0) {
+        dispatch(decrementLifes())
+      } else {
+        dispatch(setNeeds(updated_needs))
+        dispatch(setMood(updated_mood))
+      }
+    }
+
   }
 }

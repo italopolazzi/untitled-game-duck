@@ -6,8 +6,6 @@ import { Box, Button } from 'grommet'
 
 import * as animations from '@/animations/index'
 
-console.log(animations);
-
 
 const AnimationContainer = ({ current_action }) => {
 
@@ -25,11 +23,7 @@ const AnimationContainer = ({ current_action }) => {
       }
     }
 
-    console.log(lottie_options);
-
-
-
-
+  
     return (
       <Box fill>
         <Button data-sound="quack" >

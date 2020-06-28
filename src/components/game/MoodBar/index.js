@@ -58,10 +58,7 @@ const MoodBar = props => {
         style={{
           display: open ? 'flex' : 'none'
         }}
-      >
-
-
-      </Box>
+      />
     </>
   )
 }
