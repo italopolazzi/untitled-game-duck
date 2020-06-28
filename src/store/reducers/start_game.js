@@ -6,6 +6,9 @@ const cases = {
   },
   SET_PERSONALITY: (state, payload) => {
     return { ...state, personality: payload }
+  },
+  SHOW_INFO_LAYER: (state, payload) => {
+    return { ...state, info_layer: payload }
   }
 }
 

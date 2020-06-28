@@ -9,11 +9,14 @@ import StartGamePage from '@/pages/start-game'
 import GamePage from '@/pages/game'
 import HomePage from '@/pages/home'
 
+import Info from '@/components/Info'
+
 const Pages = () => {
   return (
     <Provider store={store}>
       <Grommet theme={theme} full cssVars={true}>
         <div id="pages">
+          <Info />
           <BrowserRouter>
             <Switch>
               <Route component={HomePage} path="/" exact />

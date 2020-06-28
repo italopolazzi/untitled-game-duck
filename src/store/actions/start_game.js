@@ -11,6 +11,10 @@ export const setPersonality = personality => ({
   type: 'SET_PERSONALITY',
   payload: personality
 })
+export const showInfoLayer = boolean => ({
+  type: 'SHOW_INFO_LAYER',
+  payload: boolean
+})
 export const updateStartGame = ({ name, personality }) => {
   return dispatch => {
     dispatch(setName(name))

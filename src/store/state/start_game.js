@@ -8,7 +8,8 @@ const personality_initial = {
 
 const state = {
   name: 'Duqui',
-  personality: personality_initial
+  personality: personality_initial,
+  info_layer: false
 }
 
 export default state

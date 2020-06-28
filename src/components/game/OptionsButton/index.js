@@ -7,6 +7,8 @@ import { mdiDotsVertical, mdiClose, mdiMusic, mdiMusicOff, mdiContentSave, mdiEx
 import './style.sass'
 
 import store from '@/store'
+import { showInfoLayer as SHOW_INFO_LAYER } from '@/store/actions/start_game'
+
 import { useHistory } from 'react-router-dom'
 
 const OptionsButton = props => {
@@ -46,7 +48,7 @@ const OptionsButton = props => {
   }
 
   const showInfo = () => {
-    alert("Info")
+    store.dispatch(SHOW_INFO_LAYER(true))
   }
 
   return (
