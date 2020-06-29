@@ -94,6 +94,22 @@ export const addMoodMod = mood_mod => ({
   payload: mood_mod
 })
 
+export const loadSavedGame = saved_game => {
+  return dispatch => new Promise((resolve, reject) => {
+    try {
+      dispatch({
+        type: 'LOAD_SAVED_GAME',
+        payload: saved_game
+      })
+      console.log({ saved_game});
+      
+      resolve(true)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
 export const activateCurrentAction = action => ({
   type: 'ACTIVATE_CURRENT_ACTION',
   payload: action
