@@ -9,7 +9,9 @@ import ColorfulMeter from '@/components/ColorfulMeter'
 
 import { addAction as ADD_ACTION } from '@/store/actions/game'
 
-const NeedItem = ({ need, callback }) => {
+import { commands } from '@/data/constants'
+
+const NeedItem = ({ need, icon, callback }) => {
 
   return (
     <Box
@@ -24,7 +26,7 @@ const NeedItem = ({ need, callback }) => {
         className="neuromorphic"
         onClick={() => callback()}
         icon={
-          <Icon path={need.icon}
+          <Icon path={icon}
             size={1} />
         }
       />
@@ -42,7 +44,7 @@ const NeedItem = ({ need, callback }) => {
   )
 }
 
-const NeedsBar = ({ addAction, commands, needs }) => {
+const NeedsBar = ({ addAction, needs }) => {
 
   return (
     <Box
@@ -57,6 +59,7 @@ const NeedsBar = ({ addAction, commands, needs }) => {
           <NeedItem
             key={index}
             need={need}
+            icon={command.icon}
             callback={() => addAction(command)}
           />
         )
@@ -66,8 +69,7 @@ const NeedsBar = ({ addAction, commands, needs }) => {
 }
 
 const mapStateToProps = state => ({
-  needs: state.game.needs,
-  commands: state.game.commands
+  needs: state.game.needs
 })
 
 const mapDispatchToProps = dispatch => ({

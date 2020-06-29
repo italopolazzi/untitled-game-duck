@@ -8,6 +8,8 @@ import './style.sass'
 
 import store from '@/store'
 import { showInfoLayer as SHOW_INFO_LAYER } from '@/store/actions/start_game'
+import { addGlobalMessage as ADD_GLOBAL_MESSAGE } from '@/store/actions/game'
+
 
 import { useHistory } from 'react-router-dom'
 
@@ -32,12 +34,45 @@ const OptionsButton = props => {
   }
 
   const saveGame = () => {
-    if (localStorage) {
-      // alert("Save is supported")
+
+
+    try {
+
+      const getGameBucket = bucket_name => {
+        const bucket = localStorage.getItem(bucket_name)
+        console.log(bucket);
+        
+        if (bucket) {
+          return JSON.parse(bucket)
+        }
+        return {}
+      }
+
+      const game_bucket_name = "untitled-game-duck"
+      const game_bucket = getGameBucket(game_bucket_name)
+
+      // if (!game_bucket) {
+      //   localStorage.setItem(game_bucket_name, {})
+      // }
+
+
       const data = JSON.stringify(store.getState().game)
-      localStorage.setItem("untitled-game-duck", data)
-    } else {
-      alert("Save isn't supported")
+      console.log({data});
+      
+
+      let save_name = prompt("Give a name for the new game save", "example")
+      // if (game_bucket[save_name]){
+      //   if (confirm(`Save '${save_name}' already exists! Replace?`)){
+
+      //   }
+      // } else {
+      game_bucket[save_name] = data
+      // }
+
+      localStorage.setItem("untitled-game-duck", JSON.stringify(game_bucket))
+      store.dispatch(ADD_GLOBAL_MESSAGE(`Game '${save_name}' saved!`))
+    } catch (error) {
+      store.dispatch(ADD_GLOBAL_MESSAGE(error.message))
     }
   }
 

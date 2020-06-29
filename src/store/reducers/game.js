@@ -7,6 +7,9 @@ import {
 
 
 const cases = {
+  LOAD_SAVED_GAME: (state, payload) => {
+    return { ...payload }
+  },
   SET_NAME: (state, payload) => {
     return { ...state, name: payload }
   },

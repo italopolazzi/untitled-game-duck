@@ -1,3 +1,64 @@
+import {
+  mdiShower as HYGIENE_ICON,
+  mdiGamepadVariantOutline as FUN_ICON,
+  mdiAccountGroupOutline as SOCIAL_ICON,
+  mdiFoodAppleOutline as HUNGER_ICON,
+  mdiPaperRollOutline as BADDLER_ICON,
+  mdiSleep as ENERGY_ICON
+} from '@mdi/js'
+
+
+const baddler = Object.freeze({
+  type: 'baddler',
+  icon: BADDLER_ICON,
+  action_mods: ['pooping', 'doing_nothing', 'eating'],
+  duration: 15000
+})
+
+const fun = Object.freeze({
+  type: 'fun',
+  icon: FUN_ICON,
+  action_mods: ['playing'],
+  duration: 120000
+})
+
+const hunger = Object.freeze({
+  type: 'hunger',
+  icon: HUNGER_ICON,
+  action_mods: ['eating'],
+  duration: 15000
+})
+
+const social = Object.freeze({
+  type: 'social',
+  icon: SOCIAL_ICON,
+  action_mods: ['talking'],
+  duration: 15000
+})
+
+const energy = Object.freeze({
+  type: 'energy',
+  icon: ENERGY_ICON,
+  action_mods: ['sleeping'],
+  duration: 480000
+})
+
+const hygiene = Object.freeze({
+  type: 'hygiene',
+  icon: HYGIENE_ICON,
+  action_mods: ['bathing'],
+  duration: 20000
+})
+
+export const commands = [
+  baddler,
+  fun,
+  hunger,
+  social,
+  energy,
+  hygiene
+]
+
 export const MAX_NEED_VALUE = 100
 export const MIN_NEED_VALUE = 0
 export const CURRENT_ACTION_INDEX = 0
