@@ -9,38 +9,35 @@ import * as animations from '@/animations/index'
 
 const AnimationContainer = ({ current_action }) => {
 
-  if (current_action && current_action.type) {
-    const { type } = current_action
 
-    const lottie_options = {
-      assetsPath: `./public/images/duck-${type}/`,
-      loop: true,
-      autoplay: true,
-      animationData: animations[type],
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid meet',
-        // progressiveLoad: true
-      }
+  const type = current_action ? current_action.type : "nothing"
+
+  const lottie_options = {
+    loop: true,
+    autoplay: true,
+    animationData: animations[type],
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid meet',
+      // progressiveLoad: true
     }
-
-  
-    return (
-      <Box fill>
-        <Button data-sound="quack" >
-          <Lottie
-
-            options={lottie_options}
-            isPaused={false}
-            
-            isStopped={false}
-            
-          />
-        </Button>
-      </Box>
-    )
-  } else {
-    return <p>No Animation</p>
   }
+
+
+  return (
+    <Box fill>
+      <Button data-sound="quack" >
+        <Lottie
+
+          options={lottie_options}
+          isPaused={false}
+
+          isStopped={false}
+
+        />
+      </Button>
+    </Box>
+  )
+
 }
 
 const mapStateToProps = state => ({
