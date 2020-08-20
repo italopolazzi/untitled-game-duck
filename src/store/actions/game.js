@@ -202,10 +202,6 @@ const updateNeeds = (state, action) => {
   return updated_needs;
 }
 
-
-
-
-
 const updateMood = (mood_mods, mood, dispatch) => {
   const calcMoodValueBasedOnMoodMods = mood_mods => {
     const accumulated_value = Object.values(mood_mods).reduce((acc, curr) => {

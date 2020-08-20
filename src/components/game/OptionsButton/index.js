@@ -113,7 +113,7 @@ const OptionsButton = props => {
             <Button fill="horizontal" onClick={() => showInfo()} icon={<Icon path={mdiInformation} size={1} />} label="Info" />
           </Box>
           <Box direction="row" align="center" justify="center" fill="horizontal">
-            <Text weight="bold" size="small">Made with love by X</Text>
+            <Text weight="bold" size="small">Made with love by Ítalo Polazzi</Text>
           </Box>
         </Box>
       }
