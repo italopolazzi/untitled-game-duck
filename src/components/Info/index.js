@@ -18,30 +18,20 @@ const Info = ({ info_layer, showInfoLayer }) => {
         >
           <Box direction="column" pad="large" overflow="auto" gap="medium">
             <Button label="close" onClick={() => showInfoLayer(false)} />
-            <Heading>Detalhes</Heading>
+            <Heading>Description</Heading>
             <Paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, distinctio! Expedita, consectetur? Maxime molestias debitis ducimus culpa nam perspiciatis, aperiam molestiae, amet unde dicta quo expedita sint veniam odio maiores?
+              This is a life simulation game based on The Sims, Tamagotchi and Pou. It was developed with React, Redux, Grommet, Styled Components, Lottie and After Effects as part of self-taught studies.
               </Paragraph>
 
-            <Heading>Objetivo</Heading>
-            <Paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, distinctio! Expedita, consectetur? Maxime molestias debitis ducimus culpa nam perspiciatis, aperiam molestiae, amet unde dicta quo expedita sint veniam odio maiores?
-              </Paragraph>
-
-            <Heading>Regras</Heading>
-            <Paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, distinctio! Expedita, consectetur? Maxime molestias debitis ducimus culpa nam perspiciatis, aperiam molestiae, amet unde dicta quo expedita sint veniam odio maiores?
-            </Paragraph>
-
-            <Heading>Interface</Heading>
-            <Paragraph>
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, distinctio! Expedita, consectetur? Maxime molestias debitis ducimus culpa nam perspiciatis, aperiam molestiae, amet unde dicta quo expedita sint veniam odio maiores?
-            </Paragraph>
-
-            <Heading>Créditos</Heading>
-            <Paragraph>
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, distinctio! Expedita, consectetur? Maxime molestias debitis ducimus culpa nam perspiciatis, aperiam molestiae, amet unde dicta quo expedita sint veniam odio maiores?
-            </Paragraph>
+            <Heading>Rules</Heading>
+            <ul>
+              <li>You will control a virtual pet which is a duck</li> 
+              <li>The duck starts with 3 lives</li> 
+              <li>Lives decrease if mood drops completely</li> 
+              <li>The game ends if lives run out</li> 
+              <li>The action queue becomes full with a total of 6 actions added</li> 
+              <li>The character's mood changes by modifiers which are added when the needs' levels are to high or too low</li> 
+            </ul>
             
           </Box>
 

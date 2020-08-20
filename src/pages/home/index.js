@@ -18,13 +18,13 @@ const HomePage = () => {
 
       if (storage_game_item) {
         const saved_games = JSON.parse(storage_game_item)
-        
+
         const items = Object.keys(saved_games).map(key => {
-          
+
           const datum = JSON.parse(saved_games[key])
           return { key, ...datum }
         })
-        
+
         return items
       } else {
         return []
@@ -36,7 +36,7 @@ const HomePage = () => {
 
   const main_style = {
     height: "100vh",
-    // backgroundImage: `linear-gradient(${isPortrait ? 'to top' : '45deg'}, var(--brand), transparent), url('./public/images/duck-animations-paint.png')`,
+    background: "linear-gradient(45deg, #8D07F6, rgb(218 0 255 / 32%)), url(./public/background.webp)",
     backgroundSize: "cover",
     backgroundPosition: "center"
   }
@@ -46,7 +46,7 @@ const HomePage = () => {
       <Box direction="column" justify={isPortrait ? "end" : "center"} align="start" gap="medium" fill>
         <Box direction="column" gap="small">
           <Heading>UntitledGameDuck</Heading>
-          <Paragraph>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore a facilis asperiores id, quae reprehenderit omnis quo, iste consequuntur porro eaque nesciunt maxime sunt quod, ea enim debitis eveniet dolorem!</Paragraph>
+          <Paragraph>This is a simple life simulation game inspired by The Sims, Tamagotchi and Pou. It was developed with React, Redux, Grommet, Styled Components, Lottie and After Effects as part of self-taught studies.</Paragraph>
           <Button color="accent-1" label="Details, rules and more" plain onClick={() => store.dispatch(SHOW_INFO_LAYER(true))} />
         </Box>
         <Box direction="row" gap="small">
@@ -62,7 +62,7 @@ const HomePage = () => {
                 primaryKey="key"
                 // secondaryKey="date"
                 step={5}
-                onClickItem={async ({item}) => {                  
+                onClickItem={async ({ item }) => {
                   const result = await store.dispatch(LOAD_SAVED_GAME(item))
                   if (result) history.push('/game')
                 }}
